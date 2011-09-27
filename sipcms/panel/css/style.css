@@ -1,0 +1,3044 @@
+/* ---   MAIN POSITION   ---*/
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+html {width: 100%;height: 100%;}
+body
+{
+	min-width: 1200px;
+	width: 100%;  
+	height: 100%; 
+	color: #999999;
+	font: normal 12px/13px Arial, Tahoma, sans-serif; 
+}
+
+.textButton {
+	display: block;
+	width: 142px;
+	height: 35px;
+    margin: 0 5px;	
+	float: left;
+	background: transparent url('/sipcms/panel/images/menu-btn.png') no-repeat 0 0;
+}
+.pressed {
+	background: transparent url('/sipcms/panel/images/menu-btn-pressed.png') no-repeat 0 0;
+}
+.textButton a {
+	display: block;
+	width: 131px;
+	height: 21px;
+	margin: 1px 0 0 5px;
+	padding: 8px 4px 0 0;
+	font-size: 14px;
+	font-weight: bold;
+	text-decoration: none;
+	text-transform: uppercase;
+	text-align: center;	
+	color: #999999;	
+}
+.stylizedInput 
+{
+    width: 826px;
+    padding-top: 6px;    
+    padding-bottom: 8px;   
+    padding-left: 5px;
+    margin-bottom: 4px;
+    font-size: 14px;
+    line-height: 14px;    
+    color: #bfbfbf;
+    background: transparent url('/sipcms/panel/images/longinput-bg.png') no-repeat 0 0;
+}
+
+.checkbox 
+{
+    display: inline-block;
+    vertical-align: bottom;
+    width: 13px;
+    height: 13px;
+    background: transparent url('/sipcms/panel/images/checkbox.png') no-repeat 0 0;
+}
+
+.checkbox-checked
+{
+    background-position: -13px 0;
+}
+
+#wrapper {
+	width: 100%;
+	min-width: 1200px;
+	min-height: 100%;
+	position: relative;	
+}
+#header {
+    width: 100%;
+    height: 48px;
+    position: relative;
+    padding-top: 29px;
+	background: transparent url('/sipcms/panel/images/bg-header.png') repeat-x 0 0;
+}
+#menu {
+    width: 100%;
+    height: 42px;
+	background: transparent url('/sipcms/panel/images/bg-menu.png') repeat-x 0 0;    
+}
+* html #container {
+height: 100%;
+}
+#infoPanel {
+    width: 100%;
+    height: 38px;
+    margin-bottom: 14px;
+    background: transparent url('/sipcms/panel/images/bg-infopanel.png') no-repeat 50% 0;
+}
+.clear {
+	clear: both;
+}
+.empty {
+	height: 58px;
+}
+#footer {
+	position: relative;
+	width: 100%;
+	height: 58px;
+	margin: -58px auto 0;
+	background: transparent url('/sipcms/panel/images/bg-footer.png') repeat-x 0 0 ;
+}
+
+/* ---   HEADER   ---*/
+#header .logo {
+	display: block;
+	position: absolute;
+	top: 27px;
+	left: 50px;
+	width: 103px;
+	height: 26px;
+	background: transparent url('/sipcms/panel/images/logo.png') no-repeat 0 0 ;	
+}
+#header a {
+	text-transform: uppercase;
+	text-decoration: none;
+	color: #d1dae3;
+	font-size: 14px;	
+}
+#header .exit, #header .user  {
+	display: block;
+	height: 20px;
+	float: right;
+	padding-top: 2px;
+	background-image: url('/sipcms/panel/images/icon-header.png');
+	background-repeat: no-repeat;		
+}
+#header .exit {
+	margin-right: 50px;
+	padding-left: 30px;
+	background-position: 0 0;		
+}
+#header .user {
+	margin-right: 27px;
+	padding-left: 25px;
+	background-position: 0 -24px;		
+}
+#header .lang {
+	float: right;
+	margin-right: 39px;		
+}
+#header .lang a {
+	display: block;
+	float: left;
+	height: 21px;
+	margin-right: 27px;
+	padding-top: 2px;	
+	padding-left: 28px;	
+	background-image: url('/sipcms/panel/images/icon-header.png');
+	background-repeat: no-repeat;
+}
+#header .lang a.gr {
+	background-position: 0 -98px;	
+}
+#header .lang a.en {
+	background-position: 0 -73px;	
+}
+#header .lang a.ru {
+	background-position: 0 -48px;	
+}
+
+/* ---   MENU   ---*/
+#menu ul {
+	display: block;
+	float: left;
+	margin-left: 50px;
+	padding-left: 1px;
+	background: transparent url('/sipcms/panel/images/menu-span.png') no-repeat 0 0;	
+}
+#menu ul li {
+	display: block;
+	height: 42px;
+	float: left;	
+}
+#menu ul li a {
+	display: block;
+	height: 40px;
+	float: left;
+	text-decoration: none;
+	background: transparent url('/sipcms/panel/images/menu-li.png') no-repeat 0 0;
+}
+#menu ul li a:hover,#menu ul li:hover a {
+	background: transparent url('/sipcms/panel/images/menu-hover.png') repeat-x 0 0;	
+}
+
+#menu ul li a span {
+	display: block;
+	height: 29px;
+	float: left;
+	padding: 13px 55px 0 10px;	
+	font-size: 14px;
+	font-weight: bold;
+	color: #d1dae3;
+	text-decoration: none;
+	text-transform: uppercase;
+	background: transparent url('/sipcms/panel/images/menu-span.png') no-repeat 100% 0;		
+}
+#menu ul li.last a span {
+	background: transparent url('/sipcms/panel/images/menu-span-last.png') no-repeat 100% 0;	
+}
+#menu .button_save {
+	float: right;
+	margin: 7px 42px 0 0;	
+}
+
+#menu ul li ul
+{
+    display: none;
+    position: absolute;
+    float: none;
+    margin-left: 0;
+    border: 0;
+    width: 180px;
+    padding-right: 20px;
+    padding-left: 20px;
+    background: url('/sipcms/panel/images/menu-bg.png');
+    z-index: 200;
+    margin-top: 42px;
+    padding-top: 11px;
+    padding-bottom: 4px;
+}
+
+#menu ul li:hover ul, #menu ul li.hover ul
+{
+    display: block;
+}
+
+#menu ul li ul li
+{
+    width: 100%;
+    padding-top: 7px;
+    padding-bottom: 9px;
+    background: transparent url('/sipcms/panel/images/menu-pop-separator.png') repeat-x 0 100%;
+    height: auto;
+}
+
+#menu ul li ul li.last
+{
+    background: none;
+}
+
+#menu ul li ul li a
+{
+    background: none !important;
+    color: #999999;
+    font-size: 14px;
+    line-height: 14px;
+    height: 14px;
+    font-weight: bold;
+}
+#menu ul li ul li a:hover
+{
+    background: none;
+    color: #027399;
+}
+
+/* ---   INFOPANEL   ---*/
+#infoPanel .infopanel_inner {
+    width: 100%;
+    height: 23px;
+    margin-top: 1px;
+    background: transparent url('/sipcms/panel/images/bg-infopanel-inner.png') repeat-x 0 0;	
+}
+#infoPanel .infopanel_block {
+    height: 15px;
+	float: right;
+	margin: 5px 15px 0 0;	
+}
+#infoPanel .infopanel_block a {
+	display: block;
+	height: 15px;
+	float: left;
+	background-image: url('/sipcms/panel/images/icon-infopanel.png');
+	background-repeat: no-repeat;
+	color: #7a8a99;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-decoration: none;
+	letter-spacing: 0.4px;		
+}
+#infoPanel .infopanel_block a:hover
+{
+    background-image: url('/sipcms/panel/images/icon-infopanel-hover.png');
+    font-weight: bold;
+    color: #027399;
+}
+#infoPanel .infopanel_block a.site {
+	background-position: 73px 0;
+	margin-right: 34px;
+}
+#infoPanel .infopanel_block a.panel {
+	background-position: 76px 0;
+    margin-right: 35px;
+}
+#infoPanel .infopanel_block a.message {
+    background-position: 100% -21px;
+    margin-right: 34px;
+    padding-right: 29px;   
+}
+#infoPanel .infopanel_block a.view {
+	background-position: 100% -40px;
+    margin-right: 40px;
+    padding-right: 24px;	
+}
+#infoPanel .infopanel_block a.consol {
+	background-position: 100% -60px;
+	margin-right: 35px;
+	padding-right: 17px;		
+}
+#infoPanel .infopanel_block a span {
+	display: block;
+	float: right;
+	margin-left: 27px;
+	color: #009bd5;
+	font-size: 16px;
+	font-weight: normal;
+	text-transform: uppercase;
+	text-decoration: none;
+	letter-spacing: -0.1px;	
+}
+
+/* ---   Tool Panel   ---*/
+.toolPanel {
+    height: 133px;
+    width: 1188px;
+    margin: 0 auto;
+    background: transparent url('/sipcms/panel/images/shade-bg.png') no-repeat 50% 100%;
+    position: relative;
+}
+.toolPanelHolder 
+{
+    height: 133px;
+    width: 100%;    
+}
+.toolPanel .button {
+	display: block;
+    width: 1188px;
+    height: 117px;
+    float: left;
+    overflow: hidden;
+    background:  transparent url('/sipcms/panel/images/buttons-bg.png') repeat-x 0 0;
+}
+.toolPanel .button li, .toolPanel .button  a {
+    display: block;
+    width: 99px;
+    height: 117px;
+    float: left;
+    text-align: center;    
+}
+.toolPanel .button  a {
+	text-decoration: none;
+    background: transparent url('/sipcms/panel/images/buttons-a-bg.png') no-repeat 0 0;	
+}
+.toolPanel .button  a:hover {
+    background: transparent url('/sipcms/panel/images/buttons-active-bg.png') no-repeat 0 0;	
+}
+.toolPanel .button .image {
+	display: block;
+	width: 99px;
+    height: 80px;
+    text-align: center;
+}
+.toolPanel .button .image img {
+    margin-top: 21px;
+}
+.toolPanel .button .text {
+	display: table-cell;
+    vertical-align: middle;
+	width: 91px;
+    height: 29px;
+    text-align: center;
+    padding: 0 4px;    
+    vertical-align: middle;
+    font-weight: bold;
+    line-height: 14px;
+    font-size: 12px;
+    text-decoration: none;
+    color: #fff;
+	letter-spacing: 0.1px;    
+}
+.toolPanel .close{
+	position: absolute;
+	top: 8px;
+	right: 6px;
+	width: 9px;
+	height: 9px;
+    background: transparent url('/sipcms/panel/images/icon-close-top.png') no-repeat -21px -1px;
+    z-index: 10;
+    cursor: pointer;
+}
+.toolPanel .set {
+	position: absolute;
+	top: 7px;
+	right: 25px;
+	width: 11px;
+	height: 11px;
+    background: transparent url('/sipcms/panel/images/icon-close-top.png') no-repeat 0 0;
+    z-index: 10;
+    cursor: pointer;    
+}
+
+/* ---   List Content Tool Panel   ---*/
+.list_content {
+    width: 100%; 
+	min-width: 1163px; 
+    height: 98px;
+    float: none;    
+    margin: 0 auto;
+    background: none;
+}
+
+
+.list_content_inner {
+	height: 98px;
+	margin: 0 50px;
+    background:  transparent url('/sipcms/panel/images/buttons-list-content-bg.png') repeat-x 0 0;	
+}
+.list_content .list_content_title {
+    float: left;
+	padding: 33px 0 0 22px;	
+	text-transform: uppercase;
+	font-size: 18px;
+	font-weight: bold;
+	color: #d1dae3;	
+}
+.list_content .button {
+	float: right;
+	width: 648px;
+    height: 82px;
+    background: transparent url('/sipcms/panel/images/buttons-list-content-title-bg.png') no-repeat 0 0;
+    padding-left: 1px;
+}
+.list_content_responses .button
+{
+    width: 486px;
+}
+
+.list_content .button li, .list_content .button  a {
+    width: 81px;
+    height: 82px;    
+}
+.list_content .button  a {
+    background: transparent url('/sipcms/panel/images/buttons-list-content-a-bg.png') no-repeat 0 0;	
+}
+.list_content .button  a:hover, .list_content .button  a.hover {
+    background: transparent url('/sipcms/panel/images/buttons-list-content-active-bg.png') no-repeat 0 0;	
+}
+.list_content .button .image {
+	width: 81px;
+    height: 47px;
+}
+.list_content .button .image img {
+    margin-top: 10px;
+}
+.list_content .button .text {
+	width: 81px;
+    height: 33px;
+    color: #d1dae3;
+    padding: 0;
+    letter-spacing: -0.9px;
+}
+
+.content_create .button
+{
+    width: 405px;
+}
+
+
+/* ---   Shade Box   ---*/
+.shadeBox {
+    width: 1200px;
+    height: 20px;
+    margin: 0 auto;
+    background: transparent url('/sipcms/panel/images/shade-bg.png') no-repeat 50% 0;
+}
+
+/* ---   Blocks   ---*/
+.blocks {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.blocks .leftcol
+{
+    float: left;
+    width: 600px;
+}
+
+.blocks .rightcol
+{
+    float: right;
+    width: 600px;
+}
+
+.blocks .block {
+    width: 523px;
+    margin: 0 20px 25px;
+    padding: 6px 18px 16px;
+    background: #ebf1f2 url('/sipcms/panel/images/block-shade.png') no-repeat 50% 100%;
+    float: left;
+    position: relative;
+}
+
+.blocks .blockplace
+{
+    background: none;
+    border: 1px dotted #cccccc;
+    -moz-border-radius: 3px;
+    border-radius: 3px;    
+}
+
+.blocks .block .close{
+	position: absolute;
+	top: 13px;
+	right: 20px;
+	width: 9px;
+	height: 9px;
+    background: transparent url('/sipcms/panel/images/icon-close.png') no-repeat -21px -1px;	
+}
+.blocks .block .set{
+	position: absolute;
+	top: 12px;
+	right: 39px;
+	width: 11px;
+	height: 11px;
+    background: transparent url('/sipcms/panel/images/icon-close.png') no-repeat 0 0;	
+}
+.blocks .block h1 {
+	padding-right: 45px;
+	padding-bottom: 7px;
+	font-size: 18px;
+	font-weight: bold;
+	line-height: 22px;
+	color: #999999;
+	text-transform: uppercase;
+    background: transparent url('/sipcms/panel/images/block-bg.png') repeat-x 0 100%;
+}
+.blocks .block a {
+	cursor: pointer;
+}
+.blocks .block .tbl {
+	width: 523px;
+	float: left;
+	margin: 14px 0 11px;
+}
+.blocks .block .row {
+	width: 100%;
+	float: left;
+    background: transparent url('/sipcms/panel/images/block-bg.png') repeat-x 0 100%;
+}
+.blocks .block .row div {
+	float: left;
+	padding: 10px 0 13px;
+	font-size: 14px;
+	line-height: 18px;
+	letter-spacing: 0.25px;
+	vertical-align: middle;	
+}
+.blocks .block .last {
+	background: none;
+}
+.blocks .block div.l_col {
+	width: 433px;
+}
+.blocks .block .row div.l_col a {
+	color: #999999;	
+}
+.blocks .block div.r_col {
+	width: 90px;
+	display: table-cell;
+    vertical-align: middle;
+	text-align: center;
+	text-transform: uppercase;	
+}
+.blocks .block .row div a {
+	color: #057aa5;
+	text-decoration: none;	
+}
+.blocks .block .row div a:hover {
+	font-weight: bold;
+	color: #057aa5;	
+}
+.blocks .stat .l_col {
+	text-transform: uppercase;	
+}
+
+/* ---- Block forum ---- */
+.blocks .forum .tbl {
+	margin-top: 29px;
+}
+.blocks .forum div.l_col {
+	width: 305px;
+}
+.blocks .forum .row div {
+	padding: 8px 0 10px;
+	font-size: 12px;
+	line-height: 15px;
+	border-right: 1px solid #fff;	
+}
+.blocks .forum .row_middle div {
+	display: table-cell;
+    vertical-align: middle;
+	float: none;	
+}
+.blocks .forum  .head {
+	background: #D3D8D9;	
+}
+.blocks .forum  .head div {
+	color: #057aa5;
+	text-transform: uppercase;
+	padding: 5px 0 6px;
+	border-right: 1px solid #E5E5E5;	
+}
+.blocks .forum .head div.l_col {
+	width: 297px;
+	padding-left: 8px;
+}
+.blocks .forum div.r_col_first {
+	width: 121px;
+}
+.blocks .forum div.last_col {
+	width: 95px;
+	padding-right: 0;
+}
+
+.blocks .forum .tbl .hover {
+    background-color: #E4E9EA;
+}
+
+.blocks .forum .tbl .hover div.l_col a{
+    color: #057AA5;
+    font-weight: bold;
+}
+
+/* ---- Block news ---- */
+.blocks .news .row div {
+	width: 523px;
+	padding: 5px 0 8px;
+	font-size: 12px;
+	line-height: 15px;	
+}
+.last_col {
+	border: none !important;
+}
+
+/* ---- Block fastnews ---- */
+.blocks .fastnews, .blocks .news {
+    float: right;
+}
+.blocks .fastnews .tbl {
+	margin-bottom: 1px;
+}
+.blocks .fastnews .row div {
+    vertical-align: top;
+}
+.blocks .fastnews .row {
+    background: none;
+}
+.blocks .fastnews .row div.l_col {
+	width: 109px;
+    text-transform: uppercase;
+    padding-top: 11px;
+	padding-left: 3px;
+}
+.blocks .fastnews .row div.r_col {
+    width: 410px;
+    text-align: right;
+}
+input.fastText {
+    width: 402px;
+    border:  1px solid #d9d9d9;
+    background:  #f7f9fa;
+    padding: 4px 3px 5px;
+    margin-top: 4px;
+}
+textarea.fastText {
+    border:  1px solid #d9d9d9;
+    background:  #f7f9fa;
+    width: 402px;
+    height: 107px;
+    padding: 2px 3px;
+	margin-top: 3px;    
+}
+.blocks .fastnews .row div.tools{
+    text-transform: none;
+    text-align: left;
+    padding: 3px 0 1px;
+}
+.blocks .fastnews a {
+    color: #3f5073 !important;
+    font-size: 14px;
+}
+
+.blocks .fastnews a.callendar {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background: transparent url('/sipcms/panel/images/icon-fastnews.png') no-repeat 0 0;
+    margin: 3px 0 2px 2px;
+    vertical-align: middle;
+}
+.blocks .fastnews .row div a:hover {
+	font-weight: normal;
+}
+.blocks .fastnews a.play {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background: transparent url('/sipcms/panel/images/icon-fastnews.png') no-repeat -15px 0;
+    margin: 3px 0 2px 11px;
+    vertical-align: middle;
+}
+.blocks .fastnews a.list {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background: transparent url('/sipcms/panel/images/icon-fastnews.png') no-repeat -30px 0;
+    margin: 3px 0 2px 4px;
+    vertical-align: middle;
+}
+.blocks .fastnews a.fly {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background: transparent url('/sipcms/panel/images/icon-fastnews.png') no-repeat -45px 0;
+    margin: 3px 0 2px 4px;
+    vertical-align: middle;
+}
+.blocks .fastnews a.insert {
+    margin-left: 30px;
+}
+.blocks .fastnews .row div.buttons {
+    float: right;
+    margin-top: 15px;
+    margin-right: -3px;
+    padding: 0;
+}
+.blocks .fastnews .row div.buttons div {
+	display: block;
+	width: 142px;
+	height: 35px;
+    margin-left: 10px;
+    padding: 0;
+	float: left;
+	background: transparent url('/sipcms/panel/images/menu-btn.png') no-repeat 0 0;
+}
+.blocks .fastnews .row div.buttons div.pressed {
+	background: transparent url('/sipcms/panel/images/menu-btn-pressed.png') no-repeat 0 0;
+}
+.blocks .fastnews .row div.buttons a {
+	display: block;
+	width: 135px;
+	height: 21px;
+	margin: 1px 0 0 5px;
+	padding: 8px 0 0 0;
+	font-size: 14px;
+    line-height: 14px;
+	font-weight: bold;
+	text-decoration: none;
+	text-transform: uppercase;
+	text-align: center;
+	color: #999999 !important;
+}
+.blocks .fastnews .last .row div {
+    padding-bottom: 5px;
+}
+
+
+/* ---- Block Editor ---- */
+.blocks .editor {
+	width: 834px;
+	height: 340px;
+	float: none;
+	margin: 38px auto 0;
+    background: #ebf1f2 url('/sipcms/panel/images/block-shade-editor.png') no-repeat 50% 100%;	
+}
+.blocks .tab_item {
+	display: block;
+	position: absolute;
+	top: -34px;
+	height: 34px;
+    left: 0;
+}
+.blocks .tab_item a {
+	display: block;
+	height: 21px;
+	float: left;
+	margin-right: 3px;
+    background: #ebf1f2 url('/sipcms/panel/images/bg-tab-item.png') repeat-x 0 0;
+    padding-top: 13px;
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #bfbfbf;
+}
+
+.blocks .tab_item .active{
+    background-image: none;
+}
+.blocks .tab_item .tab_item1 {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.blocks .tab_item .tab_item2 {
+    padding-left: 45px;
+    padding-right: 42px;
+}
+.blocks .tab {
+	width: 100%;
+	float: left;
+}
+.editor .editorInner {
+    margin-top: 13px;
+    float: left;
+}
+.editor .buttonPanel {
+    margin-bottom: 12px;
+    float: left;
+}
+.editor .buttonPanel div {
+    width: 19px;
+    height: 19px;
+    margin-right: 10px;
+    background: transparent url('/sipcms/panel/images/editor-buttons.png') no-repeat 0 0;
+    float: left;
+    cursor: pointer;
+}
+.editor .buttonPanel div.btn1 {
+    background-position: 0 0;
+}
+.editor .buttonPanel div.btn2 {
+    background-position: -19px 0;
+}
+.editor .buttonPanel div.btn3 {
+    background-position: -38px 0;
+}
+.editor .buttonPanel div.btn4 {
+    background-position: -57px 0;
+}
+.editor .buttonPanel div.btn5 {
+    background-position: -76px 0;
+}
+.editor .buttonPanel div.btn6 {
+    background-position: -95px 0;
+}
+.editor .buttonPanel div.btn7 {
+    background-position: -114px 0;
+}
+.editor .buttonPanel div.btn8 {
+    background-position: -133px 0;
+}
+.editor .buttonPanel div.btn9 {
+    background-position: -152px 0;
+}
+.editor .buttonPanel div.btn10 {
+    background-position: -171px 0;
+}
+.editor .buttonPanel div.btn11 {
+    background-position: -190px 0;
+}
+.editor .buttonPanel div.btn12 {
+    background-position: -209px 0;
+}
+.editor .buttonPanel div.btn13 {
+    background-position: -228px 0;
+}
+.editor .buttonPanel div.btn14 {
+    background-position: -247px 0;
+}
+.editor .buttonPanel div.btn15 {
+    background-position: -266px 0;
+}
+.editor .buttonPanel div.btn16 {
+    background-position: -285px 0;
+}
+.editor .buttonPanel div.btn17 {
+    background-position: -304px 0;
+}
+.editor .buttonPanel div.btn18 {
+    background-position: -323px 0;
+}
+.editor .buttonPanel div.btn19 {
+    background-position: -342px 0;
+}
+.editor .buttonPanel div.btn20 {
+    background-position: -361px 0;
+}
+.editor .buttonPanel div.btn21 {
+    background-position: -380px 0;
+}
+.editor .editorWindow {
+    width: 601px;
+    height: 208px;
+    float: left;
+}
+.editor .editorWindow textarea {
+    width: 601px;
+    height: 208px;
+    background: transparent url('/sipcms/panel/images/editor-bg.png') no-repeat 0 0;
+}
+.editor .tools {
+    float: right;
+    width: 211px;
+    height: 247px;
+    position: relative;
+    background: transparent url('/sipcms/panel/images/editor-tools-bg.png') no-repeat 0 0;
+    margin-right: 2px;
+}
+.editor .tools .title {
+    position: absolute;
+    font-weight: bold;
+    font-size: 12px;
+    color: #999999;
+    left: 9px;
+    top: -6px;
+}
+.editor .smallTools {
+    margin-top: 20px;
+    float: left;
+    width: 601px;
+    font-size: 14px;
+    line-height: 17px;
+    color: #999999;
+}
+.editor .smallTools .keyDiv {
+    float: left;
+}
+.editor .smallTools .orpho {
+    float: right;
+    width: 300px;
+    text-align: right;
+}
+.editor .smallTools .button {
+    float: left;
+    width: 19px;
+    height: 19px;
+    cursor: pointer;
+    background:  transparent url('/sipcms/panel/images/editor-buttons.png') no-repeat 0 0;
+}
+.editor .smallTools .orpho .button {
+    float: right;
+}
+.editor .smallTools .orpho .text {
+    float: right;
+}
+.editor .smallTools .swlang {
+    width: 29px;
+    background-position: -457px 0;
+    margin-right: 10px;
+}
+.editor .smallTools .keyboard {
+    width: 20px;
+    background-position: -437px 0;
+    margin-right: 6px;
+}
+.editor .smallTools .check {
+    background-position: -399px 0;
+    margin-right: 10px;
+    margin-left: 6px;
+}
+.editor .smallTools .lang {
+    background-position: -418px 0;
+}
+
+.editor .buttons {
+    float: left;
+    margin-top: 22px;
+    margin-left: 19px
+}
+.bigButton {
+	display: block;
+	width: 169px;
+	height: 51px;
+    margin-left: 0;
+    margin-bottom: 3px;
+	float: left;
+	background: transparent url('/sipcms/panel/images/editor-button.png') no-repeat 0 0;
+}
+.bigButton.pressed {
+	background: transparent url('/sipcms/panel/images/editor-button-pressed.png') no-repeat 0 0;
+}
+.bigButton a {
+	display: block;
+	width: 96px;
+	height: 21px;
+	margin: 7px 0 0 5px;
+	padding: 9px 0 0 65px;
+	font-size: 14px;
+    line-height: 14px;
+	font-weight: bold;
+	text-decoration: none;
+	text-transform: uppercase;
+	text-align: left;
+	color: #999999 !important;
+}
+
+.editor .buttons .photo a {
+    background: transparent url('/sipcms/panel/images/editor-button-logo.png') no-repeat 16px 0;
+}
+
+.editor .buttons .video a {
+    background: transparent url('/sipcms/panel/images/editor-button-logo.png') no-repeat 16px -30px;
+}
+
+.editor .buttons .audio a {
+    background: transparent url('/sipcms/panel/images/editor-button-logo.png') no-repeat 16px -60px;
+
+    margin-top: 6px;
+    padding-top: 10px;
+    height: 21px;
+}
+
+.editor .buttons .interview a {
+    background: transparent url('/sipcms/panel/images/editor-button-logo.png') no-repeat 16px -90px;
+    margin-top: 6px;
+    padding-top: 10px;
+    height: 23px;
+}
+
+/* ---- FullBlock ---- */
+
+.fullBlock 
+{
+    width: 1159px;
+    margin: 4px auto 0;
+}
+
+
+.fullBlock .leftBlock 
+{
+    width: 231px;
+    padding: 19px 19px 35px 19px;
+    margin-right: 20px;
+    background: #ebf1f2 url('/sipcms/panel/images/leftblock-bg.png') no-repeat 50% 100%;
+    float: left;
+}
+
+.fullBlock .rightBlock
+{
+    width: 832px;
+    padding: 20px 20px 35px 18px;
+    background: #ebf1f2 url('/sipcms/panel/images/rightblock-bg.png') no-repeat 50% 100%;
+    float: left;
+}
+
+.fullBlock .rightBlock .materialTools 
+{
+    margin-top: 25px;
+    float: left;
+    width: 603px;
+    font-size: 14px;
+    line-height: 14px;
+}
+
+.fullBlock .rightBlock .materialTools .select1 
+{
+    width: 165px;
+}
+
+.fullBlock .rightBlock .materialTools .select2 
+{
+    width: 222px;
+}
+
+.fullBlock .rightBlock .materialTools .select3
+{
+    width: 165px;
+}
+
+.fullBlock .rightBlock .materialTools .inputAuthor 
+{
+    width: 341px;
+    
+    background-image: url('/sipcms/panel/images/inputauthor.png');
+    margin-right: 6px;
+    margin-top: 2px;
+    margin-bottom: 17px;
+}   
+
+.fullBlock .rightBlock .materialTools .userSelect 
+{
+    color: #027499;
+    font-weight: bold;
+    text-decoration: none;
+    padding-left: 26px;
+    line-height: 14px;
+    background: transparent url('/sipcms/panel/images/user.png') no-repeat 13px 3px;
+}
+
+.fullBlock .rightBlock .materialTools .inputStartDate 
+{
+    width: 174px;
+    margin-right: 4px;
+    background-image: url('/sipcms/panel/images/inputstartdate.png');
+}
+
+.fullBlock .rightBlock .materialTools .inputEndDate 
+{
+    width: 206px;
+    margin-right: 4px;
+    background-image: url('/sipcms/panel/images/inputenddate.png');
+}
+
+.fullBlock .rightBlock .materialTools .callendar 
+{
+    width: 19px;
+    height: 19px;
+    
+    margin-right: 20px;
+    margin-top: -1px;
+    
+    vertical-align: middle;
+    
+    display: inline-block;
+   
+    background: transparent url('/sipcms/panel/images/editor-buttons.png') no-repeat -486px 0;
+}
+
+.fullBlock .rightBlock .materialTools textarea.metaTextarea
+{
+    width: 278px;
+    height: 120px;
+    padding: 6px;
+    margin-right: 20px;
+    margin-top: 13px;
+    
+    font: 14px/14px Arial;
+    color: #bfbfbf;
+    
+    background: transparent url('/sipcms/panel/images/textarea-meta.png') no-repeat 0 0;    
+}
+
+.fullBlock .rightBlock .materialTools textarea.last
+{
+    margin-right: 0;
+}
+
+.fullBlock .rightBlock .controlButtons
+{
+    float: right;
+
+    margin-top: 206px;
+    margin-bottom: -11px;
+    width: 191px;
+}
+.fullBlock .rightBlock .controlButtons .bigButton a
+{
+    padding-left: 0;
+    width: 160px;
+    text-align: center;
+}
+
+.fullBlock .leftBlock .categories 
+{
+    height: 608px;
+    width: 219px;
+    background: transparent url('/sipcms/panel/images/categories-bg.png') no-repeat 0 0;
+    position: relative;
+    padding-left: 12px;
+    padding-top: 21px;
+}
+
+.fullBlock .leftBlock .categories .title,
+.fullBlock .rightBlock .add_product_form .title
+{
+    color: #999999;
+    font-size: 12px;
+    font-weight: bold;
+    left: 7px;
+    position: absolute;
+    top: -6px;    
+    background: #EBF1F2;
+    position: absolute;
+    padding-right: 5px;
+    padding-left: 2px;
+	letter-spacing: 0.25px;    
+}
+.fullBlock .rightBlock .add_product_form .title span {
+	color: #027399;
+	margin-left: 20px;
+}
+
+.fullBlock .leftBlock .categories .categories-list
+{
+    height: 600px;
+    overflow: hidden;
+    position: relative;
+}
+
+.fullBlock .leftBlock .categories .categories-list ul
+{
+    width: 187px;
+    display: block;
+    float: left;
+    position: relative;
+}
+
+.fullBlock .leftBlock .categories .categories-list ul li
+{
+    width: 187px;
+    
+    line-height: 12px;
+    color: #999999;
+    
+    background: transparent url('/sipcms/panel/images/category-bg.png') no-repeat 0 0;
+    display: block;
+    float: left;
+}
+
+.fullBlock .leftBlock .categories .categories-list ul li.selected
+{
+    background-image: url('/sipcms/panel/images/category-active-bg.png');
+    color: #027399;
+}
+
+.fullBlock .leftBlock .categories .categories-list ul li div.position
+{
+    height: 17px;
+    float: left;
+
+    padding-left: 3px;
+    padding-top: 3px;
+    
+    vertical-align: middle;    
+}
+
+.fullBlock .leftBlock .categories .categories-list ul li ul li div.position
+{
+    padding-left: 18px;
+}
+
+.fullBlock .leftBlock .categories .categories-list ul li ul li ul li div.position
+{
+    padding-left: 43px;
+}
+
+.fullBlock .leftBlock .categories .categories-list ul li .checkbox 
+{
+    margin-right: 5px;    
+}
+
+.fullBlock .leftBlock .buttons 
+{
+    margin: 18px 0 0 -2px;
+}
+
+.rightBlock .pages {
+	width: 100%;
+	float: left;
+	text-align: center;
+}
+
+.rightBlock .pages a, .rightBlock .pages span {
+	display: inline-block;
+	margin: 4px 4px 0;
+	color: #a4a5a5;
+	font-size: 14px;
+	line-height: 17px;	
+	text-decoration: none;
+}
+.rightBlock .pages span, .rightBlock .pages .next, .rightBlock .pages .prev {
+	color: #027399;
+	font-weight: bold;
+}
+.rightBlock .pages .next, .rightBlock .pages .prev {
+	background-image: url('/sipcms/panel/images/next.png');
+	background-repeat: no-repeat;		
+}
+.rightBlock .pages .next {
+	background-position: 100% -17px;
+	padding-right: 10px;
+	margin-left: 14px;
+}
+.rightBlock .pages .prev {
+	background-position: 0 4px;
+	padding-left: 10px;	
+	margin-right: 14px;
+}
+.rightBlock .show {
+	width: 220px;
+	height: 42px;
+	float: left;
+	text-align: left;
+}
+.rightBlock .show select {
+	width: 71px;
+	padding: 5px 0;
+	color: #bfbfbf;
+	font-size: 14px;	
+}
+.rightBlock .up {
+	width: 220px;
+	height: 42px;
+	float: right;
+
+}
+.rightBlock .up a {
+	display: block;
+	float: right;
+	margin-top: 6px;
+	padding-right: 15px;
+	background: url('/sipcms/panel/images/up.png') no-repeat 100% 4px;
+	color: #027399;
+	font-size: 14px;
+	font-weight: bold;
+	text-decoration: none;
+	letter-spacing: -0.4px;	
+}
+
+.scroll
+{
+    width: 18px;
+    float: left;
+}
+
+.scroll div
+{
+    float: left;
+}
+
+.scroll .up
+{
+    width: 18px;
+    height: 20px;
+    background: url('/sipcms/panel/images/scroll-up.png') no-repeat 0 0;
+}
+
+.scroll .down
+{
+    width: 18px;
+    height: 21px;
+    background: url('/sipcms/panel/images/scroll-down.png') no-repeat 0 0;
+}
+
+.scroll .track
+{
+    height: 559px;
+    width: 18px;
+    background: url('/sipcms/panel/images/scroll-track.png') repeat-y 0 0;
+    position: relative;
+}
+
+.scroll .drag
+{
+    position: absolute;
+    width: 18px;
+    height: 46px;
+    background: url('/sipcms/panel/images/scroll-drag.png') no-repeat 0 0;
+}
+/* ---- end FullBlock ---- */
+
+/* ---- List Content Buttons ---- */
+.list_content_buttons {
+	height: 28px;
+	margin: 4px auto 0;	
+	width: 1087px;
+	background: transparent url('/sipcms/panel/images/list-content-buttons.png') repeat-x 0 0;
+}
+.list_content_buttons .textButton {
+	position: relative;
+	margin: -1px 0 0;
+	background-image: url("/sipcms/panel/images/list-content-button.png");
+	background-repeat: no-repeat;
+}
+.list_content_buttons .textButton_1 {
+	width: 126px;
+	background-position: -2px 0;
+}
+.list_content_buttons .textButton_2 {
+	width: 116px;
+	background-position: -128px 0;
+}
+.list_content_buttons .textButton_3 {
+	width: 216px;
+	background-position: -244px 0;
+}
+.list_content_buttons .textButton a {
+	margin-left: 0;
+	padding-right: 0;
+}
+.list_content_buttons .textButton_1 a {
+	width: 126px;
+}
+.list_content_buttons .textButton_2 a {
+	width: 116px;
+}
+.list_content_buttons .textButton_3 a {
+	width: 212px;
+}
+.list_content_buttons .pressed {
+	background-image: url("/sipcms/panel/images/list-content-button-pressed.png");
+}
+
+/* ---- FILTR ---- */
+.filtr {
+	width: 385px;
+	height: 32px;
+	margin: 19px 0 0 18px;
+	float: left;
+	background: transparent url('/sipcms/panel/images/search-button.png') no-repeat 78px 0;
+}
+.filtr label, .list_content_blocks_inner .sort div.sort_inner,  .list_content_blocks .show div.show_inner,  .rightBlock .show div.show_inner {
+	display: block;
+	float: left;
+	font-size: 14px;
+	font-weight: bold;
+	text-transform: uppercase;
+	line-height: 30px;
+}
+.filtr input.stylizedInput {
+	display: block;
+	float: left;
+	width: 175px;
+    height: 16px;
+    margin-left: 15px;
+	background: none;
+}
+.filtr input.button_search {
+	display: block;
+	float: left;	
+	width: 104px;
+    height: 27px;
+    margin-left: 6px;
+	padding-top: 2px;    
+	background: none;
+	color: #999999;
+	text-align: center;
+	vertical-align: top;
+	cursor: pointer;
+	font: normal 14px/17px Arial;
+}
+
+/* ---- List Content Blocks ---- */
+.list_content_blocks {
+	margin: 20px auto 0;
+	background: #EBF1F2;
+	width: 1087px;
+}
+
+.products_archive .list_content_blocks
+{
+    width: 818px;
+    margin: 0;
+}
+
+.list_content_blocks_shop
+{
+    width: 1157px;
+}
+
+.list_content_blocks_inner {
+	width: 100%;
+	float: left;
+	background: #EBF1F2;
+}
+.list_content_blocks_shadow {
+	width: 100%;
+	height: 17px;
+	float: left;
+	background: transparent url('/sipcms/panel/images/shade-bg.png') no-repeat 50% 0;	
+}
+
+.list_content_blocks_inner .sort {
+	float: right;
+	margin: 20px 19px 0 0;
+}
+
+.fullBlock .list_content_blocks_inner .sort 
+{
+    margin-top: 13px;
+}
+
+.list_content_blocks_inner .sort div.sort_inner {
+	float: left;
+	margin-right: 7px;
+	margin-top: 3px
+}
+ .list_content_blocks .show div.show_inner, .rightBlock .show div.show_inner 
+ {
+     float: left;
+     margin-left: 1px;
+     margin-right: 8px;
+ }
+
+.list_content_blocks_inner .sort select {
+	width: 186px;
+	margin-left: 7px;
+	padding: 5px 0;
+	color: #bfbfbf;
+	font-size: 14px;	
+}
+.list_content_blocks_inner .sort select.state {
+	width: 183px;
+}
+.list_content_blocks_inner .sort select.date {
+	width: 149px;
+}
+.list_content_blocks_inner .sort select.lang {
+	width: 149px;
+}
+
+
+.list_content_blocks_inner .sort select.material-state
+{
+    width: 165px;
+}
+
+.list_content_blocks_inner .sort select.material-cat
+{
+    width: 162px;
+}
+
+.list_content_blocks_inner .sort select.material-author
+{
+    width: 162px;
+}
+
+.list_content_blocks_inner .sort select.material-access
+{
+    width: 194px;
+}
+
+.list_content_blocks_inner .sort select.material-date
+{
+    width: 194px;
+}   
+
+
+.list_content_blocks_inner .sort select.news-state
+{
+    width: 165px;
+}
+
+
+.list_content_blocks_inner .sort select.news-author
+{
+    width: 162px;
+}
+
+.list_content_blocks_inner .sort select.news-access
+{
+    width: 194px;
+}
+
+.list_content_blocks_inner .sort select.news-date
+{
+    width: 162px;
+} 
+
+.list_content_blocks .pages {
+	width: 100%;
+	float: left;
+	text-align: center;
+}
+
+.list_content_blocks .pages a, .list_content_blocks .pages span {
+	display: inline-block;
+	margin: 4px 4px 0;
+	color: #a4a5a5;
+	font-size: 14px;
+	line-height: 17px;	
+	text-decoration: none;
+}
+.list_content_blocks .pages span, .list_content_blocks .pages .next, .list_content_blocks .pages .prev {
+	color: #027399;
+	font-weight: bold;
+}
+.list_content_blocks .pages .next, .list_content_blocks .pages .prev {
+	background-image: url('/sipcms/panel/images/next.png');
+	background-repeat: no-repeat;		
+}
+.list_content_blocks .pages .next {
+	background-position: 100% -17px;
+	padding-right: 10px;
+	margin-left: 14px;
+}
+.list_content_blocks .pages .prev {
+	background-position: 0 4px;
+	padding-left: 10px;	
+	margin-right: 14px;
+}
+.list_content_blocks .show {
+	width: 220px;
+	height: 42px;
+	float: left;
+	margin-left: 20px;
+	text-align: left;
+}
+.list_content_blocks .show select {
+	width: 71px;
+	padding: 5px 0;
+	color: #bfbfbf;
+	font-size: 14px;	
+}
+.list_content_blocks .up {
+	width: 220px;
+	height: 42px;
+	float: right;
+	margin-right: 20px;
+}
+.list_content_blocks .up a {
+	display: block;
+	float: right;
+	margin-top: 6px;
+	padding-right: 15px;
+	background: url('/sipcms/panel/images/up.png') no-repeat 100% 4px;
+	color: #027399;
+	font-size: 14px;
+	font-weight: bold;
+	text-decoration: none;
+	letter-spacing: -0.4px;	
+}
+
+
+
+.list_content_blocks .tbl {
+	margin: 68px 19px 0;
+}
+
+.products_archive .list_content_blocks .tbl {
+	margin: 0;
+}
+
+.list_content_blocks .tbl div.tbl_inner {
+	width: 100%;
+	float: left;
+	margin-bottom: 15px;
+	background: #fff;
+	font-size: 1px;
+	line-height: 1px;
+	position: relative;
+}
+
+.products_archive .tbl div.tbl_inner
+{
+    margin-bottom: 0;
+}
+
+#archive_scroll 
+{
+    position: absolute;
+    top: 34px;
+    right: 5px;
+}
+
+#archive_scroll #archive_scroll_up
+{
+    width: 18px;
+    height: 20px;
+}
+
+#archive_scroll #archive_scroll_track
+{
+    height: 519px;
+}
+
+.list_content_blocks .tbl_inner .bg_top {
+	background: #fff url('/sipcms/panel/images/bg-tbl-top.png') repeat-x 0 0;
+	width: 100%;
+	height: 5px;
+	z-index: 5;
+	top: 0;
+	left: 0;
+}
+.list_content_blocks .tbl_inner .bg_left {
+	width: 5px;	
+	background: #fff url('/sipcms/panel/images/bg-tbl-left.png') repeat-y 0 0;
+	z-index: 5;
+	height: 100%;
+	left: 0;
+	top: 0;
+}
+.list_content_blocks .tbl_inner .bg_right {
+	width: 5px;
+	background: transparent url('/sipcms/panel/images/bg-tbl-right.png') repeat-y 100% 0;	
+	height: 100%;
+	z-index: 5;
+	right: 0;
+	top: 0;
+}
+.list_content_blocks .tbl_inner .bg_bottom {
+	background: transparent url('/sipcms/panel/images/bg-tbl-bottom.png') repeat-x 0 100%;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 5px;
+	z-index: 5;
+}
+.list_content_blocks .corner_tl, .list_content_blocks .corner_tr, .list_content_blocks .corner_bl, .list_content_blocks .corner_br {
+	width: 5px;
+	height: 5px;
+	background-image: url('/sipcms/panel/images/tbl-corner.png');
+	z-index: 10;
+}
+.list_content_blocks .corner_tl {
+	background-position: 0 0;
+	top: 0;
+	left: 0;
+}
+.list_content_blocks .corner_tr {
+	background-position: -5px 0;
+	top: 0;
+	right: 0;
+}
+.list_content_blocks .corner_bl {
+	background-position: 0 -5px;
+	bottom: 0;
+	left: 0;
+}
+.list_content_blocks .corner_br {
+	background-position: -5px -5px;
+	bottom: 0;
+	right: 0;
+}
+
+.bg_left, .bg_right, .bg_top, .bg_bottom, .corner_tl, .corner_tr, .corner_bl, .corner_br
+{
+    position: absolute;
+}
+
+.list_content_blocks .tbl .tbl_content .row div.cell, .list_content_blocks .tbl .tbl_content .thead .headcell {
+	font-size: 14px;
+	line-height: 17px;
+	border-top: 1px solid #F2F2F2;
+	border-right: 1px solid #F2F2F2;
+	color: #a4a5a5;
+	padding: 5px 0 6px 17px;		
+	height: 19px;
+}
+
+
+.list_content_blocks .tbl .tbl_content .row.selected div.cell
+{
+    border-color: #e6e6e6;
+}
+
+.list_content_blocks .tbl .tbl_content .thead .headcell 
+{
+    height: 17px;
+}
+.list_content_blocks .tbl .tbl_content .row div.level_1 {
+	padding-left: 37px;
+}.list_content_blocks .tbl .tbl_content .row div.level_2 {
+	padding-left: 61px;
+}
+.list_content_blocks .tbl .tbl_content .selected .cell  {
+	background: #f2f2f2 url('/sipcms/panel/images/bg-tbl-selected.png') repeat-x 0 0;
+	border-top: 1px solid #e6e6e6;
+	border-right: 1px solid #e6e6e6;			
+}
+
+.list_content_blocks .tbl .tbl_content
+{
+    margin: 5px;
+    float: left;
+}
+
+.list_content_blocks .tbl .tbl_content div
+{
+    float: left;
+}
+.list_content_blocks .tbl .tbl_content .row div a {
+	color: #52a2c1;
+	text-decoration: none;
+}
+.list_content_blocks .tbl .tbl_content .row div a:hover {
+	text-decoration: underline;
+}
+.list_content_blocks .tbl .tbl_content .thead {
+	background: #52A2C1;
+}
+.list_content_blocks .tbl .tbl_content .thead .headcell {
+	background: #52A2C1;
+	color: #fff;
+	font-weight: bold;
+	border-right: 1px solid #4E9AB7;
+	height: 17px;
+}
+.list_content_blocks .tbl .tbl_content .row div.last, .list_content_blocks .tbl .tbl_content .thead div.last {
+	border-right: none;
+}
+.list_content_blocks .tbl .tbl_content .thead .headcell {
+	border-top: none;
+}
+.list_content_blocks .tbl .tbl_content .thead div.chack {
+	width: 39px;	
+	padding-top: 7px;
+	padding-bottom: 0;
+}
+
+.list_content_blocks .tbl .tbl_content .thead div.chack .checkbox
+{
+    margin-left: 3px;
+    margin-top: 1px;
+}
+
+.list_content_blocks .tbl .tbl_content .thead div.name {
+	width: 482px;	
+}
+.list_content_blocks .tbl .tbl_content .thead div.state {
+	width: 91px;	
+}
+.list_content_blocks .tbl .tbl_content .thead div.access {
+	width: 130px;	
+}
+.list_content_blocks .tbl .tbl_content .thead div.lang {
+	width: 107px;	
+}
+.list_content_blocks .tbl .tbl_content .thead div.date {
+	width: 83px;	
+}
+
+.list_content_blocks .tbl .materials .thead div.state {
+	width: 80px;	
+}
+.list_content_blocks .tbl .materials .thead div.cats {
+	width: 152px;	
+}
+.list_content_blocks .tbl .materials .thead div.access {
+	width: 77px;	
+}
+.list_content_blocks .tbl .materials .thead div.author {
+	width: 69px;	
+}
+.list_content_blocks .tbl .materials .thead div.views {
+	width: 89px;	
+}
+.list_content_blocks .tbl .materials .thead div.lang {
+	width:  53px;	
+}
+.list_content_blocks .tbl .materials .thead div.date {
+	width: 81px;	
+}
+
+.list_content_blocks .tbl .materials .thead div.name 
+{
+    width: 238px;
+}
+
+.list_content_blocks .tbl .materials .row div.cell
+{
+    height: 34px;
+}
+
+.list_content_blocks .tbl .news .thead div.name 
+{
+    width: 531px;
+}
+
+.list_content_blocks .tbl .news .thead div.state {
+	width: 79px;	
+}
+.list_content_blocks .tbl .news .thead div.access {
+	width: 98px;	
+}
+.list_content_blocks .tbl .news .thead div.author {
+	width: 102px;	
+}
+.list_content_blocks .tbl .news .thead div.date {
+	width: 83px;	
+}
+
+.list_content_blocks .tbl .content_responses .thead div.image
+{
+    width: 94px;
+}
+
+.list_content_blocks .tbl .content_responses .thead div.nick
+{
+    width: 180px;
+}
+
+.list_content_blocks .tbl .content_responses .thead div.product
+{
+    width: 101px;
+}
+
+.list_content_blocks .tbl .content_responses .thead div.review
+{
+    width: 396px;
+}
+
+.list_content_blocks .tbl .content_responses .thead div.state
+{
+    width: 95px;
+}
+
+.list_content_blocks .tbl .content_responses .thead div.date
+{
+    width: 79px;
+}
+.list_content_blocks .tbl .content_responses .row div.cell 
+{
+    display: table-cell;
+    vertical-align: middle;
+    padding: 9px 0 9px 17px;
+    height: auto;
+}
+
+.list_content_blocks .tbl .content_responses .row div.img img
+{
+    display: block;
+}
+
+.list_content_blocks .tbl .content_responses .row div.img
+{
+    padding-left: 11px;
+    padding-right: 12px;
+}
+
+.list_content_blocks .tbl .products_archive .thead .headcell
+{
+    padding-left: 7px;
+}
+
+.list_content_blocks .tbl .products_archive .row div.cell
+{
+    padding-left: 7px;
+    height: auto;
+}
+
+.list_content_blocks .tbl .products_archive .thead div.chack
+{
+    width: 20px;
+}
+
+.list_content_blocks .tbl .products_archive .thead div.product
+{
+    width: 97px;
+}
+
+.list_content_blocks .tbl .products_archive .thead div.name
+{
+    width: 148px;
+}
+
+.list_content_blocks .tbl .products_archive .thead div.model
+{
+    width: 138px;
+}
+
+.list_content_blocks .tbl .products_archive .thead div.count
+{
+    width: 86px;
+}
+
+.list_content_blocks .tbl .products_archive .thead div.state
+{
+    width: 79px;
+}
+
+.list_content_blocks .tbl .products_archive .thead div.price
+{
+    width: 78px;
+}
+
+.list_content_blocks .tbl .products_archive .thead div.availiable
+{
+    width: 99px;
+}
+
+.products_archive .stylizedInput 
+{
+    margin-left: 0 !important;
+}
+
+.products_archive .stylizedInputName
+{
+    width: 138px !important;
+}
+
+.products_archive .stylizedInputModel
+{
+    width: 129px !important;
+}
+
+.products_archive .stylizedInputCount
+{
+    width: 76px !important;
+}
+
+.products_archive .stylizedInputState
+{
+    width: 70px !important;
+}
+
+.products_archive .stylizedInputPrice
+{
+    width: 68px !important;
+}
+
+.products_archive #tableScrollOuter
+{
+    height: 560px;
+    position: relative;
+    overflow: hidden;
+}
+
+.products_archive #tableScrollOuter #tableScrollInner
+{
+    position: relative;
+}
+
+.products_archive .jquery-selectbox
+{
+    margin: 0;
+}
+
+.products_archive select.avail
+{
+    width: 71px;
+}
+
+.list_content_blocks .tbl .tbl_content .row .cell .state_pub, .list_content_blocks .row .cell .state_unpub {
+	display: block;
+	width: 19px;
+	height: 19px;
+	background-image: url('/sipcms/panel/images/tbl-pub.png');
+	cursor: pointer;
+}
+.list_content_blocks .tbl .tbl_content .row .cell .state_pub {
+	background-position: 0 0;
+}
+.list_content_blocks .tbl .tbl_content .row .cell .state_unpub {
+	background-position: 0 -19px;
+}
+
+.list_content_blocks .checkbox
+{
+    margin-left: 3px;
+}
+
+
+/*  ----  ADD NEWS  ----  */
+.add_news .fullBlock {
+	width: 832px;		
+}
+.add_news_load_fail {
+	width: 832px;
+	height: 187px;
+    float: left;
+    margin-bottom: 20px;
+    position: relative;
+    background: url("/sipcms/panel/images/add-news-load-fail-bg.png") no-repeat scroll 0 0 transparent;	
+}
+.add_news_load_fail .title {
+    color: #999999;
+    font-size: 14px;
+    left: 9px;
+    position: absolute;
+    top: -6px;
+}
+.fullBlock .rightBlock .add_news_load_fail .stylizedInput_LoadFile {
+	float: left;
+    background-image: url("/sipcms/panel/images/inputloadfile.png");
+    margin-bottom: 16px;
+    margin-left: 22px;
+    margin-top: 22px;
+    padding-left: 9px;
+    padding-right: 9px;
+    width: 741px;
+    font-family: Arial;
+}
+.fullBlock .rightBlock .add_news_load_fail .stylizedInput_LoadFileBtn {
+    background-image: url("/sipcms/panel/images/inputloadfilebtn.png");
+    margin-bottom: 16px;
+    margin-top: 22px;
+    width: 31px;
+	height: 32px;
+	float: left;	
+}
+.scroll_load_fail {
+	width: 788px;
+	height: 96px;
+	overflow: hidden;
+	float: left;
+	position: relative;	
+	margin-left: 22px;
+    background: url("/sipcms/panel/images/scroll-load-fail-bg.png") no-repeat 0 0;	
+}
+
+.scroll_load_fail .scrollHolder
+{
+	overflow: hidden;
+	float: left;    
+	margin: 10px 0 0 29px;	
+	width: 730px;
+}
+
+.scroll_load_fail .arr_left, .scroll_load_fail .arr_right {
+	display: block;
+	position: absolute;
+	top: 0;
+	width: 29px;
+	height: 96px;
+	background-image: url("/sipcms/panel/images/scroll-load-fail-arr.png");
+	background-repeat: no-repeat;
+}
+.scroll_load_fail .arr_left {
+	left: 0;
+	background-position: 0 0;	
+}
+
+.scroll_load_fail .arr_right {
+	right: 0;
+	background-position: 0 -96px;		
+}
+.scroll_load_fail ul {
+	display: block;
+	float: left;
+	width: 10000px;
+	height: 75px;
+
+}
+.scroll_load_fail li {
+	display: block;
+	float: left;
+	width: 75px;
+	height: 75px;
+	margin-left: 10px;
+}
+.scroll_load_fail img {
+	width: 75px;
+	height: 75px;
+}
+
+
+/*  ----  ADD PRODUCT  ----  */
+.list_content_inner_add_product {
+    margin: 0 29px;
+}
+.add_product .fullBlock {
+    background: none repeat scroll 0 0 #EBF1F2;
+    width: 1157px;	
+}
+.add_product .leftBlock {
+	padding-bottom: 0;
+	background: none;
+
+}
+.add_product .leftBlock .categories {
+	width:247px;
+	background: transparent url("/sipcms/panel/images/categories-prodict-bg.png") no-repeat 0 0 ;
+}
+.add_product .leftBlock .categories .categories-list ul {
+    width: 217px;
+}
+.add_product .leftBlock .categories .categories-list ul li {
+    background: transparent url("/sipcms/panel/images/category-prodict-bg.png") no-repeat 0 0;
+    width: 217px;
+}
+.add_product .leftBlock .categories .categories-list ul li.selected {
+    background: #fff url("/sipcms/panel/images/category-prodict-active-bg.png") no-repeat 100% 0;
+}
+.add_product .leftBlock .categories .categories-list ul li.selected a.edit,
+.add_product .leftBlock .categories .categories-list ul li.selected a.del {
+	display: block;
+	width: 14px;
+	height: 14px;
+	float: right;
+    background-image: url("/sipcms/panel/images/category-active-edit.png");
+	background-repeat: no-repeat;
+	margin: 4px 4px 0 0;	
+}
+.add_product .leftBlock .categories .categories-list ul li.selected a.edit {
+	margin-left: 4px;
+	background-position: 0 0;
+}
+.add_product .leftBlock .categories .categories-list ul li.selected a.del {
+	background-position: 0 -14px;
+}
+.add_product .rightBlock {
+	padding: 20px 20px 0 8px;
+	background: none;		
+}
+.add_product .rightBlock .add_product_form {
+    width: 841px;
+    height: 626px;	
+    position: relative;
+    padding-left: 12px;
+    padding-top: 21px;
+    background: transparent url("/sipcms/panel/images/add-prodict-bg.png") no-repeat 0 0;			
+}
+.add_product .rightBlock .add_product_buttons_top {
+    background: url("/sipcms/panel/images/add-product-buttons-top-bg.png") repeat-x scroll 0 0 transparent;
+    height: 31px;
+    margin: 12px 0 2px 11px;
+    padding: 8px 20px 0 0;
+    width: 777px;
+    text-align: right;
+	color: #C7CDCE;
+	font-size: 14px;
+}
+.add_product .rightBlock .add_product_buttons_top .textButton {
+    background-image: url("/sipcms/panel/images/add-product-buttons-top.png");
+    background-repeat: no-repeat;
+    margin: -9px 0 0;
+    position: relative;
+}
+.add_product .rightBlock .add_product_buttons_top .textButton_1 {
+    background-position: -2px 0;
+    width: 181px;
+}
+.add_product .rightBlock .add_product_buttons_top .textButton_2 {
+    background-position: -183px 0;
+    width: 175px;
+}
+.add_product .rightBlock .add_product_buttons_top .textButton_3 {
+    background-position: -358px 0;
+    width: 156px;
+}
+.add_product .rightBlock .add_product_buttons_top .textButton a {
+    margin-left: 0;
+    padding-right: 0;
+}
+.add_product .rightBlock .add_product_buttons_top .textButton_1 a {
+    width: 180px;
+}
+.add_product .rightBlock .add_product_buttons_top .textButton_2 a {
+    width: 175px;
+}
+.add_product .rightBlock .add_product_buttons_top .textButton_3 a {
+    width: 154px;
+}
+.add_product .rightBlock .add_product_buttons_top .pressed {
+	background-image: url("/sipcms/panel/images/add-product-buttons-top-pressed.png");
+}
+.add_product .rightBlock .add_product_form .stylizedInput {
+	width: 791px;
+	margin: 17px 0 0 11px;	
+    background: transparent url("/sipcms/panel/images/add-product-input-bg.png") no-repeat 0 0;
+}
+.add_product .rightBlock .add_product_form .editor .editorInner {
+    margin: 20px 0 4px 11px;
+}
+.add_product .rightBlock .add_product_form .editor .editorWindow {
+    width: 796px;
+    height: 161px;
+}
+.add_product .rightBlock .add_product_form .editor .editorWindow textarea {
+    background: url("/sipcms/panel/images/add-product-editor-bg.png") no-repeat scroll 0 0 transparent;
+    height: 161px;
+    width: 796px;
+}
+.add_product .rightBlock .add_product_form .editor .smallTools {
+    width: 796px;
+}
+.add_product .rightBlock .add_product_form .productTools {
+	width: 802px;
+	float: left;
+    margin: 15px 0 0 11px;	
+}
+.add_product .rightBlock .add_product_form .productTools_modif1 {
+	margin-bottom: 3px;
+}
+.add_product .rightBlock .add_product_form .productTools h2 {
+	margin: 10px 0 8px;
+	font-size: 14px;
+	font-weight: normal;
+	letter-spacing: -0.4px;	
+}
+.add_product .rightBlock .add_product_form input {
+	font-family: Arial,Tahoma,sans-serif;
+	font-size: 14px;
+}
+.add_product .rightBlock .add_product_form .inputCol {
+    width: 387px;	
+    background: url("/sipcms/panel/images/add-product-input-col-bg.png") no-repeat scroll 0 0 transparent;
+    margin: 0;
+    float: left;
+}
+.add_product .rightBlock .add_product_form .inputPrice {
+    width: 273px;	
+    background: url("/sipcms/panel/images/add-product-input-price-bg.png") no-repeat scroll 0 0 transparent;
+    margin: 0 0 0 15px;
+	float: left;	
+}
+.add_product .rightBlock .add_product_form .stylized-select4 {
+	margin: 0 0 0 16px;
+    background: url("/sipcms/panel/images/select/select4.png") no-repeat scroll 0 0 transparent;
+}
+.add_product .rightBlock .add_product_form .stylized-select5 {
+	margin: 0;
+    background: url("/sipcms/panel/images/select/select5.png") no-repeat scroll 0 0 transparent;
+}
+.add_product .rightBlock .add_product_form .stylized-select6 {
+	margin: 0 0 0 18px;
+    background: url("/sipcms/panel/images/select/select6.png") no-repeat scroll 0 0 transparent;
+}
+.add_product .rightBlock .add_product_form .stylized-select8 {
+	margin: 16px 0 0 11px;
+    background: url("/sipcms/panel/images/select/select8.png") no-repeat scroll 0 0 transparent;
+}
+.add_product .rightBlock .add_product_form .inputKeyw {
+    width: 389px;	
+    margin: 0 0 0 15px;
+	float: left;
+    background: url("/sipcms/panel/images/select/select7.png") no-repeat scroll 0 0 transparent;	
+}
+.add_product .rightBlock .add_product_form .controlButtons {
+    margin: 7px 10px 0 0;	
+}
+.add_product .rightBlock .add_product_form .controlButtons_modif1 {
+    margin-top: -13px;
+}
+.add_product .buttons {
+	width: 100%;	
+	float: left;
+	margin: 0 0 48px 17px;	
+}
+.add_product div.buttons div {
+    background: url("/sipcms/panel/images/add-prod-btn.png") no-repeat scroll 0 0 transparent;
+    display: block;
+    float: left;
+    height: 38px;
+    padding: 0;
+    width: 263px;
+}
+.add_product div.buttons a {
+    color: #999999 !important;
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    height: 28px;
+    line-height: 14px;
+    margin: 1px 0 0 2px;
+    padding: 8px 0 0;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 259px;
+    letter-spacing: 0.25px;
+}
+.add_product .rightBlock .add_product_form h2 {
+	margin: 18px 0 8px 19px;
+	font-size: 14px;
+	font-weight: normal;
+	letter-spacing: -0.1px;	
+}
+.add_product .rightBlock .scroll_load_fail {
+	margin: 11px 0 27px 19px;	
+}
+.add_product .rightBlock .add_product_form .stylizedInput_LoadFile {
+    background-image: url("/sipcms/panel/images/inputloadfile.png");
+    float: left;
+    font-family: Arial;
+    margin: 0 0 6px 19px;
+    padding-left: 9px;
+    padding-right: 9px;
+    width: 741px;
+}
+.add_product .rightBlock .add_product_form .stylizedInput_LoadFileBtn {
+    background-image: url("/sipcms/panel/images/inputloadfilebtn.png");
+    float: left;
+    height: 32px;
+    margin: 0 0 6px 0;
+    width: 31px;
+}
+.add_product .rightBlock .add_product_form p {
+	margin: 0 0 0 19px;
+	padding-bottom: 8px;	
+	color: #bfbfbf;
+}
+
+
+/*  ----  SHOP MAIN MENU  ----  */
+.shop_main_menu {
+	width: 1157px;
+	height: 38px;
+	margin: 3px auto 11px;		
+}
+.shop_main_menu .textButton {
+	height: 38px;
+	margin: 0;
+    background-image: url("/sipcms/panel/images/shop-main-menu-bg.png");
+	background-repeat: no-repeat;	
+}
+.shop_main_menu .pressed {
+	background-image: url("/sipcms/panel/images/shop-main-menu-pressed.png");
+}
+.shop_main_menu .textButton_1 {
+	width: 193px;
+	background-position: -2px 0;
+}
+.shop_main_menu .textButton_2 {
+	width: 161px;
+	background-position: -195px 0;
+}
+.shop_main_menu .textButton_3 {
+	width: 154px;
+	background-position: -356px 0;
+}
+.shop_main_menu .textButton_4 {
+	width: 154px;
+	background-position: -510px 0;
+}
+.shop_main_menu .textButton_5 {
+	width: 92px;
+	background-position: -664px 0;
+}
+.shop_main_menu .textButton_6 {
+	width: 92px;
+	background-position: -756px 0;
+}
+.shop_main_menu .textButton_7 {
+	width: 86px;
+	background-position: -848px 0;
+}
+.shop_main_menu .textButton_8 {
+	width: 124px;
+	background-position: -934px 0;
+}
+.shop_main_menu .textButton_9 {
+	width: 101px;
+	background-position: -1058px 0;
+}
+
+.shop_main_menu .textButton a {
+	height: 28px;
+	margin-left: 0;
+	padding-right: 0;
+}
+.shop_main_menu .textButton_1 a {
+	width: 193px;
+}
+.shop_main_menu .textButton_2 a {
+	width: 161px;
+}
+.shop_main_menu .textButton_3 a {
+	width: 154px;
+}
+.shop_main_menu .textButton_4 a {
+	width: 154px;
+}
+.shop_main_menu .textButton_5 a {
+	width: 92px;
+}
+.shop_main_menu .textButton_6 a {
+	width: 92px;
+}
+.shop_main_menu .textButton_7 a {
+	width: 86px;
+}
+.shop_main_menu .textButton_8 a {
+	width: 124px;
+}
+.shop_main_menu .textButton_9 a {
+	width: 92px;
+}
+
+
+/*  ----  CHARACTERISTICS  ----  */
+.characteristics .toolPanel .button {
+    width: 324px;
+}
+.filtr_modif1 {
+	width: 100%;
+	background-position: 114px 0;	
+}
+.filtr_modif1 input.stylizedInput {
+    width: 169px;
+}
+.characteristics .leftBlock, .characteristics .rightBlock {
+	padding-top: 15px;
+	background: none;
+}
+.characteristics .rightBlock .add_product_form .stylizedInput {
+    margin: 1px 0 0 11px;
+}
+.characteristics .characteristic_list {
+	width: 506px;
+	height: 539px;
+	margin: 17px 0 0 10px;
+	float: left;
+	background: transparent url("/sipcms/panel/images/characteristic-list-bg.png") no-repeat 0 0;		
+}
+.characteristics .characteristic_list div {
+	width: 469px;
+	height: 22px;
+	float: right;
+	margin-right: 11px;
+	padding: 4px 6px 0;
+	background: #F0F2F2;
+	border-right: 1px solid #E6E6E6;
+	border-left: 1px solid #E6E6E6;
+	border-bottom: 1px solid #E6E6E6;
+	font: normal 14px/17px Arial, Tahoma, sans-serif;			
+}
+.characteristics .characteristic_list div.first {
+	margin-top: 11px;
+	border-top: 1px solid #E6E6E6;			
+}
+.characteristics .characteristic_list div.level_2 {
+	width: 442px;
+}
+.characteristics .rightBlock .characteristic_list .stylizedInputCharacterist {
+	width: 483px;
+	float: left;
+	margin: -1px 0 0 12px;
+	background: transparent url("/sipcms/panel/images/characteristic-list-input-bg.png") no-repeat 0 0;	
+}
+.characteristics .characteristic_tools {
+	width: 263px;
+	float: left;
+	margin-top: 15px;
+	margin-left: 17px;	
+}
+.characteristics div.characteristic_tools div {
+	width: 274px;
+	height: 41px;
+	float: none;
+	margin-bottom: -4px;
+	background: url("/sipcms/panel/images/characteristic-tools-btn.png") no-repeat scroll 0 0 transparent;	
+}
+.characteristics div.characteristic_tools div.pressed {
+	background-image: url("/sipcms/panel/images/characteristic-tools-pressed.png");	
+}
+.characteristics div.characteristic_tools div a {
+	width: 270px;
+	height: 22px;	
+}
+.characteristics .buttons {
+    margin-bottom: 3px;
+}
+
+/*  ----  MANUFACTURER  ----  */
+.manufacturer .list_content_inner {
+    background: url("/sipcms/panel/images/buttons-list-content-bg.png") repeat-x scroll 0 0 transparent;
+    height: 98px;
+    margin: 0 31px;
+}
+.manufacturer .list_content .button {
+    width: 486px;
+}
+.manufacturer .list_content_blocks {
+    margin: 0 auto;
+    width: 1155px;
+}
+.manufacturer .list_content_blocks .sort {
+    margin: 15px 6px 0 0;
+}
+.manufacturer .list_content_blocks .sort div.sort_inner {
+    margin-right: 11px;
+    margin-top: 5px;
+}
+.manufacturer .list_content_blocks .tbl {
+    margin: 68px 18px 0;
+}
+.manufacturer .list_content_blocks .tbl .tbl_content {
+    margin: 3px 5px 10px;
+}
+.manufacturer .list_content_blocks .tbl .tbl_content .thead div.chack {
+    width: 40px;
+}
+
+.manufacturer .list_content_blocks .tbl .tbl_content .thead div.chack .checkbox
+{
+    margin-left: 8px;
+    margin-top: 3px;
+}
+
+.manufacturer .list_content_blocks .tbl .news .thead div.name {
+    width: 562px;
+    padding-left: 15px;
+}
+.manufacturer .list_content_blocks .tbl .news .thead div.logo {
+    width: 92px;
+    padding-left: 17px;
+}
+.manufacturer .list_content_blocks .tbl .news .thead div.state {
+    width: 181px;
+    padding-left: 12px;
+}
+.manufacturer .list_content_blocks .tbl .news .thead div.date {
+    width: 155px;
+	padding-left: 15px;    
+}
+.manufacturer .list_content_blocks .tbl .tbl_content .thead div.headcell {
+    padding: 5px 0 6px 16px;
+}
+.manufacturer .list_content_blocks .tbl .tbl_content .row div.cell {
+    padding: 7px 0 3px 16px;
+}
+.manufacturer .list_content_blocks .tbl .tbl_content .row div.logo {
+    padding: 7px 0 3px 11px;
+}
+
+/*  ----  BRAND  ----  */
+.brand .list_content_blocks .tbl .news .thead div.name {
+    width: 605px;
+}
+.brand .list_content_blocks .tbl .news .thead div.state {
+    width: 138px;
+}
+
+
+/*  ----  CURRENCY  ----  */
+.currency .list_content .button {
+    width: 405px;
+}
+.manufacturer .list_content_blocks .tbl .tbl_content .thead div.headcell {
+    padding: 5px 0 6px 11px;
+}
+.currency .list_content_blocks .tbl .tbl_content .thead div.chack {
+    width: 46px;
+}
+.currency .list_content_blocks .tbl .news .thead div.name {
+    width: 149px;
+}
+.currency .list_content_blocks .tbl .news .thead div.code {
+    width: 288px;
+}
+.currency .list_content_blocks .tbl .news .thead div.course {
+    width: 110px;
+}
+.currency .list_content_blocks .tbl .news .thead div.state {
+    width: 118px;
+}
+.currency .list_content_blocks .tbl .news .thead div.main {
+    width: 144px;
+}
+.currency .list_content_blocks .tbl .news .thead div.date {
+    width: 162px;
+}
+.currency .list_content_blocks .tbl .tbl_content .row div.cell {
+    padding: 7px 0 3px 11px;
+    overflow: hidden;
+}
+.currency .list_content_blocks .tbl .tbl_content .row div.first_chack {
+    padding: 7px 0 3px 19px;
+}
+.currency .list_content_blocks .tbl .tbl_content {
+    margin: 3px 5px 40px;
+}
+
+.currency .list_content_blocks .tbl .tbl_content .thead div.chack .checkbox
+{
+    margin-left: 11px;
+    margin-top: 3px;
+}
+
+/*  ----  WIDGET  ----  */
+.blocks .widget {
+    width: 900px;    
+    height: 576px;
+    float: none;    
+    margin: 38px auto 0;
+    position: fixed;
+    padding: 0;
+    background: url("/sipcms/panel/images/block-shade-editor.png") no-repeat scroll 50% 100% transparent;
+    z-index: 1000;
+
+}
+
+.blocks .widget_inner {
+    width: 864px;    
+    height: 538px;
+    padding: 6px 18px 16px;
+	background: #EBF1F2;	
+}
+.blocks .widget .filtr {
+    margin: 9px 0 0 3px;
+    background: url("/sipcms/panel/images/search-button-widget.png") no-repeat scroll 78px 0 transparent;    
+}
+.blocks .widget .filtr input.stylizedInput {
+    width: 136px;
+}
+.blocks .widget .stylizedInput {
+    padding-bottom: 9px;
+    padding-top: 5px;
+}
+.blocks .widget .filtr input.button_search {
+    padding-top: 1px;
+}
+.blocks .widget .sort {
+    float: right;
+    margin: 4px 0px 0 0;
+}
+.blocks .widget .sort div.sort_inner {
+    display: block;
+    float: left;
+    margin-right: 15px;
+    margin-top: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 30px;
+    text-transform: uppercase;
+}
+.blocks .widget .sort select.date {
+    width: 127px;	
+}
+.blocks .widget .sort select.state {
+    width: 147px;
+   
+}
+.blocks .widget .stylized-date {
+    margin-right: 1px;
+}
+.blocks .widget .stylized-state {
+    margin-right: 8px;
+    background: url("/sipcms/panel/images/select/select-section.png") no-repeat scroll 0 1px transparent;
+}
+
+
+
+
+.blocks .widget #tableScrollOuter {
+    height: 450px;
+    overflow: hidden;
+    position: relative;
+    float: left;
+}
+.blocks .widget #tableScrollOuter #tableScrollInner {
+    position: relative;
+    float: left;
+    padding-top: 5px;
+}
+.blocks .widget div.widget_down {
+	width: 835px;
+	height: 36px;
+	margin-top: -5px;
+	float: left;
+	background: url("/sipcms/panel/images/widget-btn-down.png") no-repeat scroll 0 0 transparent;
+}
+.blocks .widget div.pressable a {
+    width: 178px;
+    height: 21px;
+    margin: 1px 0 0 2px;
+    padding: 8px 0 0;			
+    color: #999999 !important;
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.25px;
+    line-height: 14px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.blocks .widget div.widget_down a {
+    width: 820px;
+    height: 22px;
+	text-align: left;
+	padding: 10px 0 0 9px;
+}
+.widget_open {
+	width: 822px;
+	float: left;
+	margin-left: 13px;
+}
+.blocks .widget .widget_open  .row div {
+    padding: 4px 0 8px;
+}
+.blocks .widget .widget_open  .row div.img {
+	width: 90px;
+    padding-top: 8px;
+    padding-right: 8px;
+}
+.blocks .widget .img img {
+	border: 1px solid #E6E6E6;
+}  
+.blocks .widget .row div.widget_descr {
+	width: 528px;
+	padding-right: 0;
+}
+.blocks .widget .widget_descr h2 {
+    margin-bottom: 5px;	
+    letter-spacing: -0.05px;
+}
+.blocks .widget .widget_descr p {
+	font-size: 12px;
+	line-height: 14px;
+	letter-spacing: -0.12px;
+}
+.blocks .widget .widget_open .row div.widget_btn {
+    width: 186px;	
+	padding-top: 7px;
+}
+.blocks .widget .widget_open .row div.pressable {
+    background: url("/sipcms/panel/images/widget-btn.png") no-repeat scroll 0 0 transparent;
+    display: block;
+    float: right;
+    height: 39px;
+    padding: 0;
+    width: 183px;
+}
+.blocks .widget #archive_scroll {
+    position: absolute;
+    right: 20px;
+    top: 91px;
+}
+.blocks .widget #archive_scroll #archive_scroll_track {
+    height: 408px;
+}
+
+
+/* orders */
+.orders .list_content_blocks .tbl .news .thead div.orderid {
+    width: 109px;
+}
+
+.orders .list_content_blocks .tbl .news .thead div.customer  {
+    width: 396px;
+}
+
+.orders .list_content_blocks .tbl .news .thead div.state  {
+    width: 125px;
+}
+
+.orders .list_content_blocks .tbl .news .thead div.ordertotal  {
+    width: 114px;
+}
+
+.orders .list_content_blocks .tbl .news .thead div.payment  {
+    width: 116px;
+}
+
+.orders .list_content_blocks .tbl .news .thead div.date  {
+    width: 120px;
+}
+
+.orders .list_content_blocks .tbl .tbl_content .thead div.chack .checkbox
+{
+    margin-left: 11px;
+    margin-top: 3px;
+}
+
+a.arrow
+{
+    width: 11px;
+    height: 6px;
+    display: block;
+    float: right;
+    background:  url('/sipcms/panel/images/arrow.png') no-repeat 0 0;
+
+    margin-right: 9px;
+    margin-top: 6px;
+}
+
+.opened a.arrow
+{
+    background-position: 0 -6px;
+}
+
+.orders .tbl .row.opened {
+    border-top:  1px solid #52a2c1;
+    border-right:  1px solid #52a2c1;
+    border-left:  1px solid #52a2c1;
+}
+
+.orders .tbl .row.opened .cell {
+    background: #f4f6f6;
+}
+
+.orders .tbl .rowcontent {
+    border-right:  1px solid #52a2c1;
+    border-left:  1px solid #52a2c1;
+    border-bottom:  1px solid #52a2c1;
+    width: 1107px;
+}
+
+
+.orders .tbl .rowcontent .products
+{
+    width: 100%;
+    border-bottom: 1px solid #e5e5e5;
+    position: relative;
+}
+
+.orders .tbl .rowcontent .products .thead
+{
+    height: 34px;
+    width: 100%;
+    background: #f4f6f6;
+}
+
+.orders .tbl .rowcontent .products .thead div.headcell
+{
+    padding-top: 15px;
+    padding-left: 19px;
+    padding-bottom: 0;
+
+    background: none;
+    border: none;
+
+    color: #a4a5a5;
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: bold;
+
+}
+
+.orders .tbl .rowcontent .products .thead div.image
+{
+    width: 106px;
+}
+
+.orders .tbl .rowcontent .products .thead div.name
+{
+    width: 822px;
+}
+
+.orders .tbl .rowcontent .products .thead div.ordertotal
+{
+    width: 122px;
+}
+
+.orders .tbl .rowcontent .products .row
+{
+    width: 100%;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.orders .tbl .rowcontent .products .row.last
+{
+    border:  none;
+}
+
+.orders .tbl .rowcontent .products .row div.cell
+{
+    padding-left: 19px;
+    padding-right: 19px;
+    border: none;
+    height: 88px;
+}
+
+.orders .tbl .rowcontent .products #tableScrollOuter
+{
+    height: 204px;
+    position: relative;
+    overflow: hidden;
+}
+
+.orders .tbl .rowcontent .products #tableScrollOuter #tableScrollInner
+{
+    position: relative;
+}
+
+.orders .tbl .rowcontent .products #products_scroll
+{
+    height: 192px;
+    right: 5px;
+    top: 38px;
+    position: absolute;
+}
+
+.orders .tbl .rowcontent .products #products_scroll #products_scroll_up
+{
+    height: 20px;
+    width: 18px;
+}
+
+.orders .tbl .rowcontent .products #products_scroll #products_scroll_track
+{
+    height: 151px;
+}
+
+.orders .tbl .rowcontent .annotation
+{
+    background: #f7f7f7;
+    padding: 19px 12px;
+    width: 1083px;
+
+}
+
+.orders .tbl .rowcontent .annotation p
+{
+    font-size: 12px;
+    line-height: 14px;
+    folor: #bababa;
+    width: 680px;
+    float: left;
+}
+
+.orders .tbl .rowcontent .annotation .overall
+{
+    width: 235px;
+    float: right;
+    margin-right: 22px;
+}
+
+.overall .row
+{
+    width: 100%;
+    height: 24px;
+    border-bottom: 1px solid #dedede;
+}
+
+.overall .row.last
+{
+    border-bottom: none;
+}
+
+.overall .row div
+{
+    padding-top: 7px;
+    float: left;
+    font-size: 14px;
+    line-height: 14px;
+    color: #52a2c1;
+}
+
+.overall .row.first
+{
+    height: 17px;
+}
+
+.overall .row.first div
+{
+    padding-top: 0;
+}
+
+.overall .row .left
+{
+    padding-left: 7px;
+    width: 142px;
+    color: #999999;
+}
+
+.customers .list_content_blocks .tbl .news .thead div.customerid {
+    width: 109px;
+}
+
+.customers .list_content_blocks .tbl .news .thead div.customer {
+    width: 432px;
+}
+
+.customers .list_content_blocks .tbl .news .thead div.email {
+    width: 256px;
+}
+
+.customers .list_content_blocks .tbl .news .thead div.totalorders {
+    width: 207px;
+}
+
+#publication, #no_publication, #edit_news{
+    display: none;
+}

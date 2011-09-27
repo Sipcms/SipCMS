@@ -1,0 +1,198 @@
+@CHARSET "UTF-8";
+
+.jquery-selectbox {
+	position: relative;
+	height: 32px;
+	width: 170px;
+	z-index: 0;
+	float: left;
+	display: inline;
+	margin: 4px 18px 14px 0;
+	font-size: 14px;
+	line-height: 14px;
+	color: #bfbfbf;
+	padding: 0;
+	background: url("/sipcms/panel/images/select/select-1.png") no-repeat 0 0;
+}
+
+.stylized-select1 
+{
+	background: url("/sipcms/panel/images/images/select/select-1.png") no-repeat 0 0;
+}
+
+.stylized-select2
+{
+	background: url("/sipcms/panel/images/select/select-2.png") no-repeat 0 0;
+}
+
+.stylized-select3
+{
+	background: url("/sipcms/panel/images/select/select-3.png") no-repeat 0 0;
+	margin-right: 0;
+}
+
+.stylized-state
+{
+	background: url("/sipcms/panel/images/select/select-state.png") no-repeat 0 0;
+	margin-right: 10px;
+}
+
+.stylized-date
+{
+	background: url("/sipcms/panel/images/select/select-date.png") no-repeat 0 0;
+	margin-right: 10px;
+}
+
+.stylized-lang
+{
+	background: url("/sipcms/panel/images/select/select-lang.png") no-repeat 0 0;
+	margin-right: 0;
+}
+
+.stylized-page
+{
+	background: url("/sipcms/panel/images/select/select-page.png") no-repeat 0 0;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-top: -2px;
+}
+
+.stylized-material-state
+{
+    float: right;
+    margin-right: 10px;
+    background-image: url('/sipcms/panel/images/select/select-material-state.png');
+    margin-bottom: 2px;
+}
+
+.stylized-material-cat
+{
+    float: right;
+    margin-right: 10px;
+    background-image: url('/sipcms/panel/images/select/select-material-author.png');
+    margin-bottom: 2px;
+}
+
+.stylized-material-author
+{
+    float: right;
+    margin-right: 10px;
+    background-image: url('/sipcms/panel/images/select/select-material-author.png');
+    margin-bottom: 17px;
+}
+
+.stylized-material-access
+{
+    float: right;
+    margin-right: 0px;
+    background-image: url('/sipcms/panel/images/select/select-material-date.png');
+    margin-bottom: 2px;
+}
+
+.stylized-material-date
+{
+    float: right;
+    margin-right: 0px;
+    background-image: url('/sipcms/panel/images/select/select-material-date.png');
+    margin-bottom: 17px;
+}   
+
+.stylized-news-state
+{
+    float: right;
+    margin-right: 10px;
+    background-image: url('/sipcms/panel/images/select/select-material-state.png');
+    margin-bottom: 2px;
+}
+
+.stylized-news-access
+{
+    float: right;
+    margin-right: 10px;
+    background-image: url('/sipcms/panel/images/select/select-material-date.png');
+    margin-bottom: 2px;
+}
+
+.stylized-news-author
+{
+    float: right;
+    margin-right: 0px;
+    margin-bottom: 2px;
+    background-image: url('/sipcms/panel/images/select/select-material-author.png');
+    
+}
+
+.stylized-news-date
+{
+    float: right;
+    margin-right: 0px;
+    background-image: url('/sipcms/panel/images/select/select-material-date.png');
+    margin-bottom: 17px;
+}   
+
+
+.jquery-selectbox.selecthover {
+	z-index: 700;
+}	
+.jquery-selectbox .jquery-selectbox-currentItem {
+	padding: 8px 0px 0px 6px !important;
+	margin: 0 !important;
+	white-space: nowrap;
+	display: block;
+	overflow: hidden;
+	color: #bfbfbf !important;
+	font-weight: normal !important;
+	line-height: 14px !important;
+}
+
+.jquery-selectbox .jquery-selectbox-list {
+	display: none;
+	position: absolute;
+	top: 29px;
+	padding: 0;
+	left: 0px;
+	background: #fff;
+	width: 100px;
+	height: 120px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	z-index: 1000;
+	border: 1px solid #d1d1d1;
+}
+.jquery-selectbox .jquery-selectbox-moreButton {
+	/*
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	*/
+	float: right !important;
+	background: url("/sipcms/panel/images/select/button.png");
+	width: 31px;
+	height: 32px;
+	cursor: pointer;
+}
+.jquery-selectbox .jquery-selectbox-moreButton.morebuttonhover {
+	
+}
+
+.jquery-selectbox .jquery-selectbox-item.listelementhover {
+	color: #fff;
+	background: #eee; 
+}
+.jquery-selectbox .jquery-selectbox-item {
+	display: block;
+	cursor: default;
+	padding: 8px 5px !important;
+	margin: 0 !important;
+	color: #bfbfbf !important;
+	font-weight: normal !important;
+	line-height: 14px !important;
+	width: 100% !important;	
+}
+
+/** ERROR classes **/
+form .error .jquery-selectbox {
+	color: #d00;
+	border-color: #d00;
+	background-image: url("../img/bg-TextFieldError.gif");
+}

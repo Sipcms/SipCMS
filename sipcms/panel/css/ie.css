@@ -1,0 +1,72 @@
+#infoPanel .infopanel_block a.site {
+	width: 132px;
+}
+#infoPanel .infopanel_block a.panel {
+	width: 125px;
+}
+#infoPanel .infopanel_block a span {
+    margin-left: 13px;
+}
+.toolPanel {
+    width: 1201px;
+}
+.blocks .block {
+    margin-left: 10px;
+}
+#menu ul {
+    margin-left: 25px;
+}
+
+.toolPanel .close {
+    right: 18px;
+}
+.toolPanel .set {
+    right: 35px;
+}
+
+.checkbox
+{
+    float: left;
+}
+
+.fullBlock .rightBlock .materialTools .inputAuthor
+{
+    vertical-align: -10px;
+}
+
+.inputStartDate, .inputEndDate
+{
+    vertical-align: -8px;
+}
+
+.editor .buttons
+{
+    margin-left: 9px;
+}
+.list_content_blocks .filtr {
+    margin-left: 9px;
+    margin-bottom: 14px;
+}
+.list_content_blocks .sort {
+    margin-right: 10px;
+}
+.list_content_blocks .show {
+    margin-left: 10px;
+}
+.list_content_blocks .tbl {
+    margin: 0 19px 0;
+}
+
+.list_content_blocks .sort select.material-access, .list_content_blocks .sort select.news-access
+{
+    width: 197px;
+}
+.list_content_blocks .sort select.material-date
+{
+    width: 197px;
+}
+
+.list_content_blocks .sort 
+{
+    width: 668px;
+}

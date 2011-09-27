@@ -1,0 +1,27 @@
+.toolPanel {
+    height: 132px;
+}
+.toolPanel .button .text {
+	position: relative;
+	display: block;
+}
+.toolPanel .button .text span, .blocks .forum .row_middle span {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    width: 100%;
+}
+.toolPanel .button .text span span, .blocks .forum .row_middle span span {
+    position: relative;
+    top: -50%;
+}
+.blocks .forum .row_middle div {
+	position: relative;
+	display: block;
+	float: left;	
+}
+
+.blocks .editor .buttons {
+    margin-left: 9px;
+}

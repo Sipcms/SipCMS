@@ -1,0 +1,9 @@
+.strip {
+	position: relative;
+	overflow: hidden;		
+}
+.strip img {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
