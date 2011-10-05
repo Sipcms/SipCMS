@@ -238,7 +238,7 @@
 	                    </a>
                         </li>
                         <li id="no_publication">
-	                    <a href="#" class="hoverable">
+	                    <a href="/panel/ajax/news_nopublication" class="hoverable">
 	                        <span class="image"><img src="/sipcms/panel/images/buttons/unpublish.png" alt="" /></span>
 	                        <span class="text"><span><span>Снять с публикации</span></span></span>
 	                    </a>

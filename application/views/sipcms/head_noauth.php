@@ -3,20 +3,22 @@
 
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>STARSFON</title>
+    <title>phone</title>
 	<link rel="stylesheet" href="/sipcms/css/clear.css" type="text/css" />
 	<link rel="stylesheet" href="/sipcms/css/style.css" type="text/css" />
 
 	<script type="text/javascript" src="/sipcms/js/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="/sipcms/js/main.js"></script>
 	<script type="text/javascript" src="/sipcms/js/cufon-yui.js"></script>
 	<script type="text/javascript" src="/sipcms/js/Century_Gothic_400.font.js"></script>		
 	
 	<script type="text/javascript" src="/sipcms/js/strip.js"></script> 
- <script type="text/javascript" src="/sipcms/js/jcarousellite.js"></script>
- <script type="text/javascript" src="/sipcms/js/jquery.mousewheel.min.js"></script>
-<script type="text/javascript" src="/sipcms/js/jScrollPane.js"></script>
-<script type="text/javascript" src="/sipcms/js/nivo.js"></script>
-<link type="text/css" rel="stylesheet" href="/sipcms/css/strip.css" > 
+        <script type="text/javascript" src="/sipcms/js/jcarousellite.js"></script>
+        <script type="text/javascript" src="/sipcms/js/jquery.mousewheel.min.js"></script>
+        <script type="text/javascript" src="/sipcms/js/jScrollPane.js"></script>
+        <script type="text/javascript" src="/sipcms/js/nivo.js"></script>
+        <script type="text/javascript" src="/sipcms/js/jquery.blockUI.js"></script>
+<link type="text/css" rel="stylesheet" href="/sipcms/css/strip.css" /> 
 <link rel="stylesheet" type="text/css" href="/sipcms/css/jScrollPane.css" />
 
 <script type="text/javascript">
@@ -52,32 +54,23 @@
         $(e).addClass('cur');
     }
 
-    $(function () {
-        $('.nivoSlider').nivoSlider({
-            effect: 'sliceDown',
-            animSpeed: 500,
-            pauseTime: 5000,
-            startSlide: 0,
-            slices: 15,
-            directionNav: false,
-            directionNavHide: true,
-            controlNav: true,
-            controlNavThumbs: false,
-            keyboardNav: true,
-            pauseOnHover: true,
-            captionOpacity: 1
-        });
-
-        $('.news_arr_down').click(function () {
-            $('.scrollContent').animate({ top: '-=79' });
-            return false;
-        });
-
-        $('.news_arr_up').click(function () {
-            $('.scrollContent').animate({ top: '+=79' });
-            return false;
-        });
-    });
+	    $(function () {
+	        $('.nivoSlider').nivoSlider({
+	            effect: 'sliceDown',
+	            animSpeed: 500,
+	            pauseTime: 5000,
+	            startSlide: 0,
+	            slices: 15,
+	            directionNav: false,
+	            directionNavHide: true,
+	            controlNav: true,
+	            controlNavThumbs: false,
+	            keyboardNav: true,
+	            pauseOnHover: true,
+	            captionOpacity: 1
+	        });
+    	});
+	
 </script> 
 	
 	
@@ -98,6 +91,230 @@
         $('.scrollContent a').live('hover', function () {$(this).toggleClass('hover')});
 	</script>	
 	<![endif]-->
+        <script type="text/javascript">
+        $(document).ready(function(){
+            $('#login_block').live('click',function() { 
+                $.blockUI({ 
+                    message: $('#popup-login'),
+                    css:{
+                        cursor: 'default',
+                        top: '15%', 
+                        left: '35%',
+                        border: 'none'
+                    },
+                    overlayCSS:  {  
+                        opacity: 0.6 ,
+                        cursor: 'pointer'
+                    },
+                    focusInput: false
+                });
+                return false;
+            }); 
+            $('#reg-popup').live('click',function(){
+                $.blockUI({ 
+                    message: $('#popup-reg'),
+                    css:{
+                        cursor: 'default',
+                        top: '15%', 
+                        left: '35%',
+                        border: 'none'
+                    },
+                    overlayCSS:  {  
+                        opacity: 0.6 ,
+                        cursor: 'pointer'
+                    },
+                    focusInput: false
+                });
+                $('input#reg_submit')
+                .attr('disabled','disabled')
+                .css({
+                    opacity: 0.5,
+                    cursor: 'auto'
+                });
+                return false;
+            });
+            $('#form-login input#login').live('focus',function(){
+                attr = $(this).attr('sip-value');
+                val = $(this).attr('value');
+                if(attr == val)
+                {
+                    $(this).val('');
+                }
+                
+            });
+            $('#form-login input#login').live('blur',function(){
+                attr = $(this).attr('sip-value');
+                val = $(this).attr('value');
+                if(val == '')
+                {
+                    $(this).val(attr);
+                }
+                
+            });
+            
+            
+            $('#form-login input#pass').live('focus',function(){
+                attr = $(this).attr('sip-value');
+                val = $(this).attr('value');
+                inp = document.getElementById('pass');
+                if(attr == val)
+                {
+                    $(this).val('');
+                    inp.type = 'password';
+                }
+            });
+            $('#form-login input#pass').live('blur',function(){
+                attr = $(this).attr('sip-value');
+                val = $(this).attr('value');
+                inp = document.getElementById('pass');
+                if(val == '')
+                {
+                    $(this).val(attr);
+                    inp.type = 'text';
+                }else{
+                    if(attr !== val)
+                    {
+                        inp.type = 'password';
+                    }
+                }
+            });
+        
+            $('#reg-form input#mail').live('focus keyup',function(event){
+                attr = $(this).attr('sip-value');
+                val = $(this).attr('value');
+                if(attr == val)
+                {
+                    $(this).val('');
+                }
+                
+                //$('#reg_submit').removeAttr(name);
+                if(event.type == 'keyup')
+                {
+                    text = $(this).val();
+                    $.ajax({
+                        type: 'POST',
+                        url: '/ajax/check_mail',
+                        data:{
+                            mail: text
+                        },
+                        dataType: 'json',
+                        success: function(data){
+                            console.log(data);
+                            if($('#ajax-loader').css('display') == 'block') $('#ajax-loader').css('display','none');
+                                
+                            if(data.status == true)
+                            {
+                                $('#otvet').html('');
+                                $('input#reg_submit')
+                                .removeAttr('disabled')
+                                .animate({
+                                    opacity: 1
+                                },150)
+                                .css({
+                                    cursor: 'pointer'
+                                });
+                                if($('#ajax-response-error').css('display') == 'block') $('#ajax-response-error').css('display','none');
+                                $('#ajax-response-access').css('display','block');
+                            }else{
+                                if($('#ajax-response-access').css('display') == 'block') $('#ajax-response-access').css('display','none');
+                                $('input#reg_submit')
+                                .attr('disabled','disabled')
+                                .animate({
+                                    opacity: 0.5
+                                },150)
+                                .css({
+                                    cursor: 'auto'
+                                });
+                                $('#otvet').html(data.text[0]);
+                                $('#ajax-response-error').css('display','block');
+                            }
+                        },
+                        beforeSend: function(){
+                            if($('#ajax-response-error').css('display') == 'block') $('#ajax-response-error').css('display','none');
+                            if($('#ajax-response-access').css('display') == 'block') $('#ajax-response-access').css('display','none');
+                            $('#ajax-loader').css({
+                                display: 'block'
+                            });
+                        }
+                    });
+                }
+                
+            });
+            $('input#reg_submit').live('submit click',function(event){
+                console.log(event.type);
+                val = $('#reg-form input#mail').val();
+                $.ajax({
+                    type: 'POST',
+                    url: '/ajax/registr',
+                    data:{
+                        submit: true,
+                        mail: val
+                    },
+                    dataType: 'json',
+                    success: function(data){
+                        if(data.status == true)
+                        {
+                            $.blockUI({ 
+                                message: $('#popup-forreg'),
+                                css:{
+                                    cursor: 'default',
+                                    top: '15%', 
+                                    left: '35%',
+                                    border: 'none'
+                                },
+                                overlayCSS:  {  
+                                    opacity: 0.6 ,
+                                    cursor: 'pointer'
+                                },
+                                focusInput: false
+                            });
+                            $('a#res_mail').html(val);
+                            $('a#res_mail').attr('href','mailto:'+val);
+                            
+                        }else{
+                            $.blockUI({ 
+                                message: $('#popup-reg'),
+                                css:{
+                                    cursor: 'default',
+                                    top: '15%', 
+                                    left: '35%',
+                                    border: 'none'
+                                },
+                                overlayCSS:  {  
+                                    opacity: 0.6 ,
+                                    cursor: 'pointer'
+                                },
+                                focusInput: false
+                            });
+                            $('#reg-form input#reg_submit')
+                            .attr('disabled','disabled')
+                            .css({
+                                opacity: 0.5,
+                                cursor: 'auto'
+                            });
+                            $('#reg-form #otvet').html(data.error[0]);
+                        }
+                    }
+                });
+                
+                return false;
+            });
+            $('#reg-form input#mail').live('blur',function(){
+                attr = $(this).attr('sip-value');
+                val = $(this).attr('value');
+                if(val == '')
+                {
+                    $(this).val(attr);
+                }
+            });
+        
+            $('.close, .blockOverlay').live('click',function(){
+                $.unblockUI();
+            });
+            
+            
+        });
+        </script>
 	
 </head>
 
@@ -105,10 +322,10 @@
 
  	<!--  WRAPPERS  -->
 	<div id="wrapper">
-	
 		<!--  HEADER  -->
-		<div id="header"><div id="header_inner">
-		  	<a href="#" class="logo"><img src="/sipcms/images/logo.png" alt="StarsFon"/></a>
+		<div id="header">
+			<div id="header_inner">
+		  	<a href="/" class="logo"><img src="/sipcms/images/logo.png" alt="StarsFon"/></a>
 			<!--  TOPMENU  -->
 			<ul class="menu pngf">
 				<li class="pngf"><a href="/">О компании</a></li>
@@ -117,48 +334,47 @@
 				<li class="pngf"><a href="/">Контакты</a></li>
 			</ul>
 			<!--  end TOPMENU  -->
-			
-			<a href="<?=(Auth::instance()->logged_in() ? '/logout' : '/login')?>" class="entry pngf"><?=(Auth::instance()->logged_in() ? 'Выход' : 'Вход в систему')?></a>
-		
-		</div></div>
+			<a href="<?=(Auth::instance()->logged_in() ? '/logout' : '/login')?>" id="login_block" class="entry pngf"><?=(Auth::instance()->logged_in() ? 'Выход' : 'Вход в систему')?></a>
+			</div>
+		</div>
 		<!--  end HEADER  -->
-		
 		<!--  SLIDER  -->
 		<div id="slider"><div id="slider_bg">
-		  
 			<div id="slider_block">
-			                		
 				<div class="anythingSlider">
 					<div class="anythingWindow" style="position:relative;">
 						<ul class="bannergroup" style="width: 4705px;position:absolute;">
 							<li class="banneritem">
 								<div class="nivoSlider">
-
-                                    <img alt="" src="/sipcms/images/slide-2.png" class="pngf" title='<h2>2Lorem Ipsum - это текст-"рыба".</h2>
+                                    <img alt="" src="/sipcms/images/slide-1.gif" class="pngf" title='<h2>1Lorem Ipsum - это текст-"рыба".</h2>
 								        <p>Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне.<br />Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века</p>
 								        <div class="more pngf"><a href="#">Читать дальше</a></div>'/>
 
-                                    <img alt="" src="/sipcms/images/slide-3.png" class="pngf" title='<h2>3Lorem Ipsum - это текст-"рыба".</h2>
+                                    <img alt="" src="/sipcms/images/slide-2.gif" class="pngf" title='<h2>2Lorem Ipsum - это текст-"рыба".</h2>
 								        <p>Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне.<br />Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века</p>
 								        <div class="more pngf"><a href="#">Читать дальше</a></div>'/>
 
-                                    <img alt="" src="/sipcms/images/slide-4.png" class="pngf" title='<h2>4Lorem Ipsum - это текст-"рыба".</h2>
+                                    <img alt="" src="/sipcms/images/slide-3.gif" class="pngf" title='<h2>3Lorem Ipsum - это текст-"рыба".</h2>
 								        <p>Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне.<br />Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века</p>
 								        <div class="more pngf"><a href="#">Читать дальше</a></div>'/>
 
-                                    <img alt="" src="/sipcms/images/slide-5.png" class="pngf" title='<h2>5Lorem Ipsum - это текст-"рыба".</h2>
+                                    <img alt="" src="/sipcms/images/slide-4.gif" class="pngf" title='<h2>4Lorem Ipsum - это текст-"рыба".</h2>
 								        <p>Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне.<br />Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века</p>
 								        <div class="more pngf"><a href="#">Читать дальше</a></div>'/>
 
-                                    <img alt="" src="/sipcms/images/slide-6.png" class="pngf" title='<h2>5Lorem Ipsum - это текст-"рыба".</h2>
+                                    <img alt="" src="/sipcms/images/slide-5.gif" class="pngf" title='<h2>5Lorem Ipsum - это текст-"рыба".</h2>
 								        <p>Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне.<br />Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века</p>
 								        <div class="more pngf"><a href="#">Читать дальше</a></div>'/>
 
-                                    <img alt="" src="/sipcms/images/slide-7.png" class="pngf" title='<h2>5Lorem Ipsum - это текст-"рыба".</h2>
+                                    <img alt="" src="/sipcms/images/slide-6.gif" class="pngf" title='<h2>5Lorem Ipsum - это текст-"рыба".</h2>
 								        <p>Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне.<br />Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века</p>
 								        <div class="more pngf"><a href="#">Читать дальше</a></div>'/>
 
-                                    <img alt="" src="/sipcms/images/slide-8.png" class="pngf" title='<h2>5Lorem Ipsum - это текст-"рыба".</h2>
+                                    <img alt="" src="/sipcms/images/slide-7.gif" class="pngf" title='<h2>5Lorem Ipsum - это текст-"рыба".</h2>
+								        <p>Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне.<br />Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века</p>
+								        <div class="more pngf"><a href="#">Читать дальше</a></div>'/>
+
+                                    <img alt="" src="/sipcms/images/slide-8.gif" class="pngf" title='<h2>5Lorem Ipsum - это текст-"рыба".</h2>
 								        <p>Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне.<br />Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века</p>
 								        <div class="more pngf"><a href="#">Читать дальше</a></div>'/>
                                 </div>
@@ -177,9 +393,8 @@
 			
 			<!--POSITION SLIDER-->
 			</div>
-		
-		</div></div>
+		</div>
+		</div>
 		<!--  end SLIDER  -->		
-		
 	  <!--  CONTAINER  -->
 	  <div id="container">

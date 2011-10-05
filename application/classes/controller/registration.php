@@ -1,7 +1,8 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
 class Controller_Registration extends Sip_Controller {
-
+    
+    
     public function before() {
         parent::before();
         if($this->auth->logged_in())
@@ -10,12 +11,8 @@ class Controller_Registration extends Sip_Controller {
         }
     }
 
-
     public function action_index()
     {
-//        $sf = Database::instance('starsfon');
-//        $sf->query(Database::SELECT, "SELECT * FROM `destinationgroups` WHERE 1");
-//        $this->data['test'] = $sf->query(Database::SELECT, "SELECT * FROM `destinationgroups` LIMIT 1");
         if(isset($_POST['submit']))
         {
             $reg_arr = array(

@@ -69,7 +69,7 @@
 				            			<div class="first last">21.06.2011</div>									            			
 				            		</div>
 				            		<div class="row">
-				            			<div class="first"><input type="checkbox" class="custom"/></div>
+				            			<div class="first"><input type="checkbox" value="2" class="custom"/></div>
 				            			<div class="first"><a href="#">Lorem Ipsum - это текст Lorem Ipsum</a></div>
 				            			<div class="first"><a class="state_pub"></a></div>
 				            			<div class="first">Публичный</div>
@@ -77,7 +77,7 @@
 				            			<div class="first last">21.06.2011</div>									            			
 				            		</div>
 				            		<div class="row">
-				            			<div class="first"><input type="checkbox" class="custom"/></div>
+				            			<div class="first"><input type="checkbox" value="3" class="custom"/></div>
 				            			<div class="first"><a href="#">Lorem Ipsum - это текст Lorem Ipsum</a></div>
 				            			<div class="first"><a class="state_pub"></a></div>
 				            			<div class="first">Публичный</div>
@@ -85,7 +85,7 @@
 				            			<div class="first last">21.06.2011</div>									            			
 				            		</div>
 				            		<div class="row">
-				            			<div class="first"><input type="checkbox" class="custom"/></div>
+				            			<div class="first"><input type="checkbox" value="4" class="custom"/></div>
 				            			<div class="first"><a href="#">Lorem Ipsum - это текст Lorem Ipsum</a></div>
 				            			<div class="first"><a class="state_pub"></a></div>
 				            			<div class="first">Публичный</div>

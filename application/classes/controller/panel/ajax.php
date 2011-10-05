@@ -25,7 +25,14 @@ class Controller_Panel_Ajax extends Controller{
     
     public function action_news_publication()
     {
-        return true;
+        $val = Arr::get($_POST,'val',null);
+        echo print_r($val,TRUE);
+    }
+    
+    public function action_news_nopublication()
+    {
+        $val = Arr::get($_POST,'val',null);
+        echo print_r($val,TRUE);
     }
     
 }
