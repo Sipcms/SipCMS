@@ -20,6 +20,31 @@ class Controller_Ajax extends Controller{
         return true;
     }
     
+    public function action_convert_currency()
+    {
+        $in = Arr::get($_POST,'in',null);
+        $out = Arr::get($_POST,'out',null);
+        $new_val = Model_Sipstarsfon::convert_currency($out);
+        echo json_encode(array('newval' => $new_val,'in_' => $in, 'out' => $out));
+    }
+    
+    public function action_get_balance()
+    {
+        $auth = Auth::instance();
+        $user = ORM::factory('sipusers', array('id'=>$auth->get_user()));
+        if(!$user->loaded())
+        {
+            return FALSE;
+        }
+        echo Model_Sipstarsfon::get_balanc($user->email);
+    }
+
+
+    public function action_test()
+    {
+        echo json_encode(array('status' => 'Прошло'));
+    }
+    
     public function action_check_mail()
     {
         $text = Arr::get($_POST,'mail',null);

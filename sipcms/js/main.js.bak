@@ -1,0 +1,775 @@
+$(function(){
+	jQuery(document).ready(function() {
+	    jQuery('.scrollContent').jcarousel({
+	        vertical: true,
+			animation: "slow",
+			wrap: 'circular',
+	        scroll: 1
+	    });
+	});
+});
+/*!
+ * jCarousel - Riding carousels with jQuery
+ *   http://sorgalla.com/jcarousel/
+ *
+ * Copyright (c) 2006 Jan Sorgalla (http://sorgalla.com)
+ * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
+ * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
+ *
+ * Built on top of the jQuery library
+ *   http://jquery.com
+ *
+ * Inspired by the "Carousel Component" by Bill Scott
+ *   http://billwscott.com/carousel/
+ */
+
+(function(g){var q={vertical:!1,rtl:!1,start:1,offset:1,size:null,scroll:3,visible:null,animation:"normal",easing:"swing",auto:0,wrap:null,initCallback:null,setupCallback:null,reloadCallback:null,itemLoadCallback:null,itemFirstInCallback:null,itemFirstOutCallback:null,itemLastInCallback:null,itemLastOutCallback:null,itemVisibleInCallback:null,itemVisibleOutCallback:null,animationStepCallback:null,buttonNextHTML:"<div></div>",buttonPrevHTML:"<div></div>",buttonNextEvent:"click",buttonPrevEvent:"click", buttonNextCallback:null,buttonPrevCallback:null,itemFallbackDimension:null},m=!1;g(window).bind("load.jcarousel",function(){m=!0});g.jcarousel=function(a,c){this.options=g.extend({},q,c||{});this.autoStopped=this.locked=!1;this.buttonPrevState=this.buttonNextState=this.buttonPrev=this.buttonNext=this.list=this.clip=this.container=null;if(!c||c.rtl===void 0)this.options.rtl=(g(a).attr("dir")||g("html").attr("dir")||"").toLowerCase()=="rtl";this.wh=!this.options.vertical?"width":"height";this.lt=!this.options.vertical? this.options.rtl?"right":"left":"top";for(var b="",d=a.className.split(" "),f=0;f<d.length;f++)if(d[f].indexOf("jcarousel-skin")!=-1){g(a).removeClass(d[f]);b=d[f];break}a.nodeName.toUpperCase()=="UL"||a.nodeName.toUpperCase()=="OL"?(this.list=g(a),this.clip=this.list.parents(".jcarousel-clip"),this.container=this.list.parents(".jcarousel-container")):(this.container=g(a),this.list=this.container.find("ul,ol").eq(0),this.clip=this.container.find(".jcarousel-clip"));if(this.clip.size()===0)this.clip= this.list.wrap("<div></div>").parent();if(this.container.size()===0)this.container=this.clip.wrap("<div></div>").parent();b!==""&&this.container.parent()[0].className.indexOf("jcarousel-skin")==-1&&this.container.wrap('<div class=" '+b+'"></div>');this.buttonPrev=g(".jcarousel-prev",this.container);if(this.buttonPrev.size()===0&&this.options.buttonPrevHTML!==null)this.buttonPrev=g(this.options.buttonPrevHTML).appendTo(this.container);this.buttonPrev.addClass(this.className("jcarousel-prev"));this.buttonNext= g(".jcarousel-next",this.container);if(this.buttonNext.size()===0&&this.options.buttonNextHTML!==null)this.buttonNext=g(this.options.buttonNextHTML).appendTo(this.container);this.buttonNext.addClass(this.className("jcarousel-next"));this.clip.addClass(this.className("jcarousel-clip")).css({position:"relative"});this.list.addClass(this.className("jcarousel-list")).css({overflow:"hidden",position:"relative",top:0,margin:0,padding:0}).css(this.options.rtl?"right":"left",0);this.container.addClass(this.className("jcarousel-container")).css({position:"relative"}); !this.options.vertical&&this.options.rtl&&this.container.addClass("jcarousel-direction-rtl").attr("dir","rtl");var j=this.options.visible!==null?Math.ceil(this.clipping()/this.options.visible):null,b=this.list.children("li"),e=this;if(b.size()>0){var h=0,i=this.options.offset;b.each(function(){e.format(this,i++);h+=e.dimension(this,j)});this.list.css(this.wh,h+100+"px");if(!c||c.size===void 0)this.options.size=b.size()}this.container.css("display","block");this.buttonNext.css("display","block");this.buttonPrev.css("display", "block");this.funcNext=function(){e.next()};this.funcPrev=function(){e.prev()};this.funcResize=function(){e.resizeTimer&&clearTimeout(e.resizeTimer);e.resizeTimer=setTimeout(function(){e.reload()},100)};this.options.initCallback!==null&&this.options.initCallback(this,"init");!m&&g.browser.safari?(this.buttons(!1,!1),g(window).bind("load.jcarousel",function(){e.setup()})):this.setup()};var f=g.jcarousel;f.fn=f.prototype={jcarousel:"0.2.8"};f.fn.extend=f.extend=g.extend;f.fn.extend({setup:function(){this.prevLast= this.prevFirst=this.last=this.first=null;this.animating=!1;this.tail=this.resizeTimer=this.timer=null;this.inTail=!1;if(!this.locked){this.list.css(this.lt,this.pos(this.options.offset)+"px");var a=this.pos(this.options.start,!0);this.prevFirst=this.prevLast=null;this.animate(a,!1);g(window).unbind("resize.jcarousel",this.funcResize).bind("resize.jcarousel",this.funcResize);this.options.setupCallback!==null&&this.options.setupCallback(this)}},reset:function(){this.list.empty();this.list.css(this.lt, "0px");this.list.css(this.wh,"10px");this.options.initCallback!==null&&this.options.initCallback(this,"reset");this.setup()},reload:function(){this.tail!==null&&this.inTail&&this.list.css(this.lt,f.intval(this.list.css(this.lt))+this.tail);this.tail=null;this.inTail=!1;this.options.reloadCallback!==null&&this.options.reloadCallback(this);if(this.options.visible!==null){var a=this,c=Math.ceil(this.clipping()/this.options.visible),b=0,d=0;this.list.children("li").each(function(f){b+=a.dimension(this, c);f+1<a.first&&(d=b)});this.list.css(this.wh,b+"px");this.list.css(this.lt,-d+"px")}this.scroll(this.first,!1)},lock:function(){this.locked=!0;this.buttons()},unlock:function(){this.locked=!1;this.buttons()},size:function(a){if(a!==void 0)this.options.size=a,this.locked||this.buttons();return this.options.size},has:function(a,c){if(c===void 0||!c)c=a;if(this.options.size!==null&&c>this.options.size)c=this.options.size;for(var b=a;b<=c;b++){var d=this.get(b);if(!d.length||d.hasClass("jcarousel-item-placeholder"))return!1}return!0}, get:function(a){return g(">.jcarousel-item-"+a,this.list)},add:function(a,c){var b=this.get(a),d=0,p=g(c);if(b.length===0)for(var j,e=f.intval(a),b=this.create(a);;){if(j=this.get(--e),e<=0||j.length){e<=0?this.list.prepend(b):j.after(b);break}}else d=this.dimension(b);p.get(0).nodeName.toUpperCase()=="LI"?(b.replaceWith(p),b=p):b.empty().append(c);this.format(b.removeClass(this.className("jcarousel-item-placeholder")),a);p=this.options.visible!==null?Math.ceil(this.clipping()/this.options.visible): null;d=this.dimension(b,p)-d;a>0&&a<this.first&&this.list.css(this.lt,f.intval(this.list.css(this.lt))-d+"px");this.list.css(this.wh,f.intval(this.list.css(this.wh))+d+"px");return b},remove:function(a){var c=this.get(a);if(c.length&&!(a>=this.first&&a<=this.last)){var b=this.dimension(c);a<this.first&&this.list.css(this.lt,f.intval(this.list.css(this.lt))+b+"px");c.remove();this.list.css(this.wh,f.intval(this.list.css(this.wh))-b+"px")}},next:function(){this.tail!==null&&!this.inTail?this.scrollTail(!1): this.scroll((this.options.wrap=="both"||this.options.wrap=="last")&&this.options.size!==null&&this.last==this.options.size?1:this.first+this.options.scroll)},prev:function(){this.tail!==null&&this.inTail?this.scrollTail(!0):this.scroll((this.options.wrap=="both"||this.options.wrap=="first")&&this.options.size!==null&&this.first==1?this.options.size:this.first-this.options.scroll)},scrollTail:function(a){if(!this.locked&&!this.animating&&this.tail){this.pauseAuto();var c=f.intval(this.list.css(this.lt)), c=!a?c-this.tail:c+this.tail;this.inTail=!a;this.prevFirst=this.first;this.prevLast=this.last;this.animate(c)}},scroll:function(a,c){!this.locked&&!this.animating&&(this.pauseAuto(),this.animate(this.pos(a),c))},pos:function(a,c){var b=f.intval(this.list.css(this.lt));if(this.locked||this.animating)return b;this.options.wrap!="circular"&&(a=a<1?1:this.options.size&&a>this.options.size?this.options.size:a);for(var d=this.first>a,g=this.options.wrap!="circular"&&this.first<=1?1:this.first,j=d?this.get(g): this.get(this.last),e=d?g:g-1,h=null,i=0,k=!1,l=0;d?--e>=a:++e<a;){h=this.get(e);k=!h.length;if(h.length===0&&(h=this.create(e).addClass(this.className("jcarousel-item-placeholder")),j[d?"before":"after"](h),this.first!==null&&this.options.wrap=="circular"&&this.options.size!==null&&(e<=0||e>this.options.size)))j=this.get(this.index(e)),j.length&&(h=this.add(e,j.clone(!0)));j=h;l=this.dimension(h);k&&(i+=l);if(this.first!==null&&(this.options.wrap=="circular"||e>=1&&(this.options.size===null||e<= this.options.size)))b=d?b+l:b-l}for(var g=this.clipping(),m=[],o=0,n=0,j=this.get(a-1),e=a;++o;){h=this.get(e);k=!h.length;if(h.length===0){h=this.create(e).addClass(this.className("jcarousel-item-placeholder"));if(j.length===0)this.list.prepend(h);else j[d?"before":"after"](h);if(this.first!==null&&this.options.wrap=="circular"&&this.options.size!==null&&(e<=0||e>this.options.size))j=this.get(this.index(e)),j.length&&(h=this.add(e,j.clone(!0)))}j=h;l=this.dimension(h);if(l===0)throw Error("jCarousel: No width/height set for items. This will cause an infinite loop. Aborting..."); this.options.wrap!="circular"&&this.options.size!==null&&e>this.options.size?m.push(h):k&&(i+=l);n+=l;if(n>=g)break;e++}for(h=0;h<m.length;h++)m[h].remove();i>0&&(this.list.css(this.wh,this.dimension(this.list)+i+"px"),d&&(b-=i,this.list.css(this.lt,f.intval(this.list.css(this.lt))-i+"px")));i=a+o-1;if(this.options.wrap!="circular"&&this.options.size&&i>this.options.size)i=this.options.size;if(e>i){o=0;e=i;for(n=0;++o;){h=this.get(e--);if(!h.length)break;n+=this.dimension(h);if(n>=g)break}}e=i-o+ 1;this.options.wrap!="circular"&&e<1&&(e=1);if(this.inTail&&d)b+=this.tail,this.inTail=!1;this.tail=null;if(this.options.wrap!="circular"&&i==this.options.size&&i-o+1>=1&&(d=f.intval(this.get(i).css(!this.options.vertical?"marginRight":"marginBottom")),n-d>g))this.tail=n-g-d;if(c&&a===this.options.size&&this.tail)b-=this.tail,this.inTail=!0;for(;a-- >e;)b+=this.dimension(this.get(a));this.prevFirst=this.first;this.prevLast=this.last;this.first=e;this.last=i;return b},animate:function(a,c){if(!this.locked&& !this.animating){this.animating=!0;var b=this,d=function(){b.animating=!1;a===0&&b.list.css(b.lt,0);!b.autoStopped&&(b.options.wrap=="circular"||b.options.wrap=="both"||b.options.wrap=="last"||b.options.size===null||b.last<b.options.size||b.last==b.options.size&&b.tail!==null&&!b.inTail)&&b.startAuto();b.buttons();b.notify("onAfterAnimation");if(b.options.wrap=="circular"&&b.options.size!==null)for(var c=b.prevFirst;c<=b.prevLast;c++)c!==null&&!(c>=b.first&&c<=b.last)&&(c<1||c>b.options.size)&&b.remove(c)}; this.notify("onBeforeAnimation");if(!this.options.animation||c===!1)this.list.css(this.lt,a+"px"),d();else{var f=!this.options.vertical?this.options.rtl?{right:a}:{left:a}:{top:a},d={duration:this.options.animation,easing:this.options.easing,complete:d};if(g.isFunction(this.options.animationStepCallback))d.step=this.options.animationStepCallback;this.list.animate(f,d)}}},startAuto:function(a){if(a!==void 0)this.options.auto=a;if(this.options.auto===0)return this.stopAuto();if(this.timer===null){this.autoStopped= !1;var c=this;this.timer=window.setTimeout(function(){c.next()},this.options.auto*1E3)}},stopAuto:function(){this.pauseAuto();this.autoStopped=!0},pauseAuto:function(){if(this.timer!==null)window.clearTimeout(this.timer),this.timer=null},buttons:function(a,c){if(a==null&&(a=!this.locked&&this.options.size!==0&&(this.options.wrap&&this.options.wrap!="first"||this.options.size===null||this.last<this.options.size),!this.locked&&(!this.options.wrap||this.options.wrap=="first")&&this.options.size!==null&& this.last>=this.options.size))a=this.tail!==null&&!this.inTail;if(c==null&&(c=!this.locked&&this.options.size!==0&&(this.options.wrap&&this.options.wrap!="last"||this.first>1),!this.locked&&(!this.options.wrap||this.options.wrap=="last")&&this.options.size!==null&&this.first==1))c=this.tail!==null&&this.inTail;var b=this;this.buttonNext.size()>0?(this.buttonNext.unbind(this.options.buttonNextEvent+".jcarousel",this.funcNext),a&&this.buttonNext.bind(this.options.buttonNextEvent+".jcarousel",this.funcNext), this.buttonNext[a?"removeClass":"addClass"](this.className("jcarousel-next-disabled")).attr("disabled",a?!1:!0),this.options.buttonNextCallback!==null&&this.buttonNext.data("jcarouselstate")!=a&&this.buttonNext.each(function(){b.options.buttonNextCallback(b,this,a)}).data("jcarouselstate",a)):this.options.buttonNextCallback!==null&&this.buttonNextState!=a&&this.options.buttonNextCallback(b,null,a);this.buttonPrev.size()>0?(this.buttonPrev.unbind(this.options.buttonPrevEvent+".jcarousel",this.funcPrev), c&&this.buttonPrev.bind(this.options.buttonPrevEvent+".jcarousel",this.funcPrev),this.buttonPrev[c?"removeClass":"addClass"](this.className("jcarousel-prev-disabled")).attr("disabled",c?!1:!0),this.options.buttonPrevCallback!==null&&this.buttonPrev.data("jcarouselstate")!=c&&this.buttonPrev.each(function(){b.options.buttonPrevCallback(b,this,c)}).data("jcarouselstate",c)):this.options.buttonPrevCallback!==null&&this.buttonPrevState!=c&&this.options.buttonPrevCallback(b,null,c);this.buttonNextState= a;this.buttonPrevState=c},notify:function(a){var c=this.prevFirst===null?"init":this.prevFirst<this.first?"next":"prev";this.callback("itemLoadCallback",a,c);this.prevFirst!==this.first&&(this.callback("itemFirstInCallback",a,c,this.first),this.callback("itemFirstOutCallback",a,c,this.prevFirst));this.prevLast!==this.last&&(this.callback("itemLastInCallback",a,c,this.last),this.callback("itemLastOutCallback",a,c,this.prevLast));this.callback("itemVisibleInCallback",a,c,this.first,this.last,this.prevFirst, this.prevLast);this.callback("itemVisibleOutCallback",a,c,this.prevFirst,this.prevLast,this.first,this.last)},callback:function(a,c,b,d,f,j,e){if(!(this.options[a]==null||typeof this.options[a]!="object"&&c!="onAfterAnimation")){var h=typeof this.options[a]=="object"?this.options[a][c]:this.options[a];if(g.isFunction(h)){var i=this;if(d===void 0)h(i,b,c);else if(f===void 0)this.get(d).each(function(){h(i,this,d,b,c)});else for(var a=function(a){i.get(a).each(function(){h(i,this,a,b,c)})},k=d;k<=f;k++)k!== null&&!(k>=j&&k<=e)&&a(k)}}},create:function(a){return this.format("<li></li>",a)},format:function(a,c){for(var a=g(a),b=a.get(0).className.split(" "),d=0;d<b.length;d++)b[d].indexOf("jcarousel-")!=-1&&a.removeClass(b[d]);a.addClass(this.className("jcarousel-item")).addClass(this.className("jcarousel-item-"+c)).css({"float":this.options.rtl?"right":"left","list-style":"none"}).attr("jcarouselindex",c);return a},className:function(a){return a+" "+a+(!this.options.vertical?"-horizontal":"-vertical")}, dimension:function(a,c){var b=g(a);if(c==null)return!this.options.vertical?b.outerWidth(!0)||f.intval(this.options.itemFallbackDimension):b.outerHeight(!0)||f.intval(this.options.itemFallbackDimension);else{var d=!this.options.vertical?c-f.intval(b.css("marginLeft"))-f.intval(b.css("marginRight")):c-f.intval(b.css("marginTop"))-f.intval(b.css("marginBottom"));g(b).css(this.wh,d+"px");return this.dimension(b)}},clipping:function(){return!this.options.vertical?this.clip[0].offsetWidth-f.intval(this.clip.css("borderLeftWidth"))- f.intval(this.clip.css("borderRightWidth")):this.clip[0].offsetHeight-f.intval(this.clip.css("borderTopWidth"))-f.intval(this.clip.css("borderBottomWidth"))},index:function(a,c){if(c==null)c=this.options.size;return Math.round(((a-1)/c-Math.floor((a-1)/c))*c)+1}});f.extend({defaults:function(a){return g.extend(q,a||{})},intval:function(a){a=parseInt(a,10);return isNaN(a)?0:a},windowLoaded:function(){m=!0}});g.fn.jcarousel=function(a){if(typeof a=="string"){var c=g(this).data("jcarousel"),b=Array.prototype.slice.call(arguments, 1);return c[a].apply(c,b)}else return this.each(function(){var b=g(this).data("jcarousel");b?(a&&g.extend(b.options,a),b.reload()):g(this).data("jcarousel",new f(this,a))})}})(jQuery);
+//popup
+$(function(){
+	$(document).ready(function(){
+	//$('.link-popup').simplebox();
+    $(document.body).append('<div id="fader"></div>');
+	pp.node = 0;
+	pp.fader = document.getElementById("fader");
+
+	$(pp.fader).css({
+		background : "#000",
+		width : "100%",
+		height : "100%",
+		opacity : 0.7,
+		position : "fixed",
+		left : "-100%",
+		top : "-100%",
+		zIndex : 1001
+	});
+	$('.link-popup').click(function(e) {e.stopPropagation(); f_popup($(this).attr("href"));});
+	$('#popup .button').click(function(e) {e.stopPropagation(); f_popup("#popup-2");});
+	$('#popup-2 .button').click(function(e) {e.stopPropagation(); f_popup("#popup");});
+	$('#popup-2 .submit').click(function(e) {e.stopPropagation(); f_popup("#popup-3");});
+	$('#popup-3 .button').click(function(e) {e.stopPropagation(); f_popup("#popup-2");});
+});
+});
+
+
+var pp = {duration : 300};
+function f_popup(el_id) {
+	if (pp.node != 0) {
+		$(pp.fader).clone().appendTo(document.body).animate({left : "-100%", top : "-100%"}, pp.duration, function() {$(this).remove();});
+		$(pp.fader).css({left : "-100%", top : "-100%"});
+		$(pp.node).stop().animate({left : -pp.pw+"px", top : -pp.ph+"px"}, pp.duration);
+	}
+
+	var i_d = el_id;
+	pp.node = document.getElementById(i_d.substr(1,i_d.length-1));
+	$(pp.node).click(function(e) {e.stopPropagation();});
+	pp.pw = $(pp.node).width();
+	pp.ph = $(pp.node).height();
+	pp.aw = ($(window).width() - pp.pw)/2;
+	pp.ah = ($(window).height() - pp.ph)/2;
+	pp.aw = pp.aw > 0 ? pp.aw : 0;
+	pp.ah = pp.ah > 0 ? pp.ah : 0;
+
+	$(window).resize(function() {
+		pp.pw = $(pp.node).width();
+		pp.ph = $(pp.node).height();
+		pp.aw = ($(window).width() - pp.pw)/2;
+		pp.ah = ($(window).height() - pp.ph)/2;
+		pp.aw = pp.aw > 0 ? pp.aw : 0;
+		pp.ah = pp.ah > 0 ? pp.ah : 0;
+		$(pp.node).css({left : pp.aw+"px", top : pp.ah+"px"});
+	});
+
+	$(pp.fader).animate({left : "0%", top : "0%"}, pp.duration);
+	$(pp.node).css({
+		display : "block",
+		position : "fixed",
+		left : -pp.pw+"px",
+		top : -pp.ph+"px"
+	}).animate({left : pp.aw+"px", top : pp.ah+"px"}, pp.duration);
+
+	$(document.body).one("click", function() {hide_pp();});
+	$(i_d + " .close").one("click", function() {hide_pp();});
+}
+
+function hide_pp() {
+	$(pp.fader).stop().animate({left : "-100%", top : "-100%"}, pp.duration);
+	$(pp.node).stop().animate({left : -pp.pw+"px", top : -pp.ph+"px"}, pp.duration);
+	pp.node = 0;
+}
+
+
+(function($) {
+	$.fn.simplebox = function(options) { 
+		return new Simplebox(this, options); 
+	};
+	
+	function Simplebox(context, options) { this.init(context, options); };
+	
+	Simplebox.prototype = {
+		options:{},
+		init: function (context, options){
+			this.options = $.extend({
+				duration: 300,
+				linkClose: 'a.close, a.btn-close',
+				divFader: 'fader',
+				faderColor: 'black',
+				opacity: 0.7,
+				wrapper: '#wrapper',
+				linkPopap: '.link-submit'
+			}, options || {});
+			this.btn = $(context);
+			this.select = $(this.options.wrapper).find('select');
+			this.initFader();
+			this.btnEvent(this, this.btn);
+		},
+		btnEvent: function($this, el){
+			el.click(function(){
+				if ($(this).attr('href')) $this.toPrepare(this.href.substr(this.href.indexOf("#")));
+				else $this.toPrepare($(this).attr('title'));
+				return false;
+			});
+		},
+		calcWinWidth: function(){
+			this.winWidth = $('body').width();
+			if ($(this.options.wrapper).width() > this.winWidth) this.winWidth = $(this.options.wrapper).width();
+		},
+		toPrepare: function(obj){
+			this.popup = $(obj);
+			this.btnClose = this.popup.find(this.options.linkClose);
+			this.submitBtn = this.popup.find(this.options.linkPopap);
+			
+			if ($.browser.msie) this.select.css({visibility: 'hidden'});
+			this.calcWinWidth();
+			this.winHeight = $(window).height();
+			this.winScroll = $(window).scrollTop();
+			
+			this.popupTop = this.winScroll + (this.winHeight/2) - this.popup.outerHeight(true)/2;
+			if (this.popupTop < 0) this.popupTop = 0;
+			this.faderHeight = $(this.options.wrapper).outerHeight();
+			if ($(window).height() > this.faderHeight) this.faderHeight = $(window).height();
+			
+			this.popup.css({
+				top: this.popupTop,
+				left: this.winWidth/2 - this.popup.outerWidth(true)/2
+			}).hide();
+			this.fader.css({
+				width: this.winWidth,
+				height: this.faderHeight
+			});
+			this.initAnimate(this);
+			this.initCloseEvent(this, this.btnClose, true);
+			this.initCloseEvent(this, this.submitBtn, false);
+			this.initCloseEvent(this, this.fader, true);
+		},
+		initCloseEvent: function($this, el, flag){
+			el.click(function(){
+				$this.popup.fadeOut($this.options.duration, function(){
+					$this.popup.css({left: '-9999px'}).show();
+					if ($.browser.msie) $this.select.css({visibility: 'visible'});
+					$this.submitBtn.unbind('click');
+					$this.fader.unbind('click');
+					$this.btnClose.unbind('click');
+					$(window).unbind('resize');
+					if (flag) $this.fader.fadeOut($this.options.duration);
+					else {
+						if ($this.submitBtn.attr('href')) $this.toPrepare($this.submitBtn.attr('href'));
+						else $this.toPrepare($this.submitBtn.attr('title'));
+					}
+				});
+				return false;
+			});
+		},
+		initAnimate:function ($this){
+			$this.fader.fadeIn($this.options.duration, function(){
+				$this.popup.fadeIn($this.options.duration);
+			});
+			$(window).resize(function(){
+				$this.calcWinWidth();
+				$this.popup.animate({
+					left: $this.winWidth/2 - $this.popup.outerWidth(true)/2
+				}, {queue:false, duration: $this.options.duration});
+				$this.fader.css({width: $this.winWidth});
+			});
+		},
+		initFader: function(){
+			if ($(this.options.divFader).length > 0) this.fader = $(this.options.divFader);
+			else{
+				this.fader = $('<div class="'+this.options.divFader+'"></div>');
+				$('body').append(this.fader);
+				this.fader.css({
+					position: 'absolute',
+					zIndex: 1001,
+					left:0,
+					top:0,
+					background: this.options.faderColor,
+					opacity: this.options.opacity
+				}).hide();
+			}
+		}
+	}
+}(jQuery));
+//custom selects
+$(function(){
+			$('form select-holder').jqTransform({imgPath:'/images/'});
+		});
+/*
+ *
+ * jqTransform
+ * by mathieu vilaplana mvilaplana@dfc-e.com
+ * Designer ghyslain armand garmand@dfc-e.com
+ *
+ *
+ * Version 1.0 25.09.08
+ * Version 1.1 06.08.09
+ * Add event click on Checkbox and Radio
+ * Auto calculate the size of a select element
+ * Can now, disabled the elements
+ * Correct bug in ff if click on select (overflow=hidden)
+ * No need any more preloading !!
+ * 
+ ******************************************** */
+ 
+(function($){
+	var defaultOptions = {preloadImg:true};
+	var jqTransformImgPreloaded = false;
+
+	var jqTransformPreloadHoverFocusImg = function(strImgUrl) {
+		//guillemets to remove for ie
+		strImgUrl = strImgUrl.replace(/^url\((.*)\)/,'$1').replace(/^\"(.*)\"$/,'$1');
+		var imgHover = new Image();
+		imgHover.src = strImgUrl.replace(/\.([a-zA-Z]*)$/,'-hover.$1');
+		var imgFocus = new Image();
+		imgFocus.src = strImgUrl.replace(/\.([a-zA-Z]*)$/,'-focus.$1');				
+	};
+
+	
+	/***************************
+	  Labels
+	***************************/
+	var jqTransformGetLabel = function(objfield){
+		var selfForm = $(objfield.get(0).form);
+		var oLabel = objfield.next();
+		if(!oLabel.is('label')) {
+			oLabel = objfield.prev();
+			if(oLabel.is('label')){
+				var inputname = objfield.attr('id');
+				if(inputname){
+					oLabel = selfForm.find('label[for="'+inputname+'"]');
+				} 
+			}
+		}
+		if(oLabel.is('label')){return oLabel.css('cursor','pointer');}
+		return false;
+	};
+	
+	/* Hide all open selects */
+	var jqTransformHideSelect = function(oTarget){
+		var ulVisible = $('.jqTransformSelectWrapper ul:visible');
+		ulVisible.each(function(){
+			var oSelect = $(this).parents(".jqTransformSelectWrapper:first").find("select").get(0);
+			//do not hide if click on the label object associated to the select
+			if( !(oTarget && oSelect.oLabel && oSelect.oLabel.get(0) == oTarget.get(0)) ){$(this).hide();}
+		});
+	};
+	/* Check for an external click */
+	var jqTransformCheckExternalClick = function(event) {
+		if ($(event.target).parents('.jqTransformSelectWrapper').length === 0) { jqTransformHideSelect($(event.target)); }
+	};
+
+	/* Apply document listener */
+	var jqTransformAddDocumentListener = function (){
+		$(document).mousedown(jqTransformCheckExternalClick);
+	};	
+			
+	/* Add a new handler for the reset action */
+	var jqTransformReset = function(f){
+		var sel;
+		$('.jqTransformSelectWrapper select', f).each(function(){sel = (this.selectedIndex<0) ? 0 : this.selectedIndex; $('ul', $(this).parent()).each(function(){$('a:eq('+ sel +')', this).click();});});
+		$('a.jqTransformCheckbox, a.jqTransformRadio', f).removeClass('jqTransformChecked');
+		$('input:checkbox, input:radio', f).each(function(){if(this.checked){$('a', $(this).parent()).addClass('jqTransformChecked');}});
+	};
+
+	/***************************
+	  Buttons
+	 ***************************/
+	$.fn.jqTransInputButton = function(){
+		return this.each(function(){
+			var newBtn = $('<button id="'+ this.id +'" name="'+ this.name +'" type="'+ this.type +'" class="'+ this.className +' jqTransformButton"><span><span>'+ $(this).attr('value') +'</span></span>')
+				.hover(function(){newBtn.addClass('jqTransformButton_hover');},function(){newBtn.removeClass('jqTransformButton_hover')})
+				.mousedown(function(){newBtn.addClass('jqTransformButton_click')})
+				.mouseup(function(){newBtn.removeClass('jqTransformButton_click')})
+			;
+			$(this).replaceWith(newBtn);
+		});
+	};
+	
+	/***************************
+	  Text Fields 
+	 ***************************/
+	$.fn.jqTransInputText = function(){
+		return this.each(function(){
+			var $input = $(this);
+	
+			if($input.hasClass('jqtranformdone') || !$input.is('input')) {return;}
+			$input.addClass('jqtranformdone');
+	
+			var oLabel = jqTransformGetLabel($(this));
+			oLabel && oLabel.bind('click',function(){$input.focus();});
+	
+			var inputSize=$input.width();
+			if($input.attr('size')){
+				inputSize = $input.attr('size')*10;
+				$input.css('width',inputSize);
+			}
+			
+			$input.addClass("jqTransformInput").wrap('<div class="jqTransformInputWrapper"><div class="jqTransformInputInner"><div></div></div></div>');
+			var $wrapper = $input.parent().parent().parent();
+			$wrapper.css("width", inputSize+10);
+			$input
+				.focus(function(){$wrapper.addClass("jqTransformInputWrapper_focus");})
+				.blur(function(){$wrapper.removeClass("jqTransformInputWrapper_focus");})
+				.hover(function(){$wrapper.addClass("jqTransformInputWrapper_hover");},function(){$wrapper.removeClass("jqTransformInputWrapper_hover");})
+			;
+	
+			/* If this is safari we need to add an extra class */
+			$.browser.safari && $wrapper.addClass('jqTransformSafari');
+			$.browser.safari && $input.css('width',$wrapper.width()+16);
+			this.wrapper = $wrapper;
+			
+		});
+	};
+	
+	/***************************
+	  Check Boxes 
+	 ***************************/	
+	$.fn.jqTransCheckBox = function(){
+		return this.each(function(){
+			if($(this).hasClass('jqTransformHidden')) {return;}
+
+			var $input = $(this);
+			var inputSelf = this;
+
+			//set the click on the label
+			var oLabel=jqTransformGetLabel($input);
+			oLabel && oLabel.click(function(){aLink.trigger('click');});
+			
+			var aLink = $('<a href="#" class="jqTransformCheckbox"></a>');
+			//wrap and add the link
+			$input.addClass('jqTransformHidden').wrap('<span class="jqTransformCheckboxWrapper"></span>').parent().prepend(aLink);
+			//on change, change the class of the link
+			$input.change(function(){
+				this.checked && aLink.addClass('jqTransformChecked') || aLink.removeClass('jqTransformChecked');
+				return true;
+			});
+			// Click Handler, trigger the click and change event on the input
+			aLink.click(function(){
+				//do nothing if the original input is disabled
+				if($input.attr('disabled')){return false;}
+				//trigger the envents on the input object
+				$input.trigger('click').trigger("change");	
+				return false;
+			});
+
+			// set the default state
+			this.checked && aLink.addClass('jqTransformChecked');		
+		});
+	};
+	/***************************
+	  Radio Buttons 
+	 ***************************/	
+	$.fn.jqTransRadio = function(){
+		return this.each(function(){
+			if($(this).hasClass('jqTransformHidden')) {return;}
+
+			var $input = $(this);
+			var inputSelf = this;
+				
+			oLabel = jqTransformGetLabel($input);
+			oLabel && oLabel.click(function(){aLink.trigger('click');});
+	
+			var aLink = $('<a href="#" class="jqTransformRadio" rel="'+ this.name +'"></a>');
+			$input.addClass('jqTransformHidden').wrap('<span class="jqTransformRadioWrapper"></span>').parent().prepend(aLink);
+			
+			$input.change(function(){
+				inputSelf.checked && aLink.addClass('jqTransformChecked') || aLink.removeClass('jqTransformChecked');
+				return true;
+			});
+			// Click Handler
+			aLink.click(function(){
+				if($input.attr('disabled')){return false;}
+				$input.trigger('click').trigger('change');
+	
+				// uncheck all others of same name input radio elements
+				$('input[name="'+$input.attr('name')+'"]',inputSelf.form).not($input).each(function(){
+					$(this).attr('type')=='radio' && $(this).trigger('change');
+				});
+	
+				return false;					
+			});
+			// set the default state
+			inputSelf.checked && aLink.addClass('jqTransformChecked');
+		});
+	};
+	
+	/***************************
+	  TextArea 
+	 ***************************/	
+	$.fn.jqTransTextarea = function(){
+		return this.each(function(){
+			var textarea = $(this);
+	
+			if(textarea.hasClass('jqtransformdone')) {return;}
+			textarea.addClass('jqtransformdone');
+	
+			oLabel = jqTransformGetLabel(textarea);
+			oLabel && oLabel.click(function(){textarea.focus();});
+			
+			var strTable = '<table cellspacing="0" cellpadding="0" border="0" class="jqTransformTextarea">';
+			strTable +='<tr><td id="jqTransformTextarea-tl"></td><td id="jqTransformTextarea-tm"></td><td id="jqTransformTextarea-tr"></td></tr>';
+			strTable +='<tr><td id="jqTransformTextarea-ml">&nbsp;</td><td id="jqTransformTextarea-mm"><div></div></td><td id="jqTransformTextarea-mr">&nbsp;</td></tr>';	
+			strTable +='<tr><td id="jqTransformTextarea-bl"></td><td id="jqTransformTextarea-bm"></td><td id="jqTransformTextarea-br"></td></tr>';
+			strTable +='</table>';					
+			var oTable = $(strTable)
+					.insertAfter(textarea)
+					.hover(function(){
+						!oTable.hasClass('jqTransformTextarea-focus') && oTable.addClass('jqTransformTextarea-hover');
+					},function(){
+						oTable.removeClass('jqTransformTextarea-hover');					
+					})
+				;
+				
+			textarea
+				.focus(function(){oTable.removeClass('jqTransformTextarea-hover').addClass('jqTransformTextarea-focus');})
+				.blur(function(){oTable.removeClass('jqTransformTextarea-focus');})
+				.appendTo($('#jqTransformTextarea-mm div',oTable))
+			;
+			this.oTable = oTable;
+			if($.browser.safari){
+				$('#jqTransformTextarea-mm',oTable)
+					.addClass('jqTransformSafariTextarea')
+					.find('div')
+						.css('height',textarea.height())
+						.css('width',textarea.width())
+				;
+			}
+		});
+	};
+	
+	/***************************
+	  Select 
+	 ***************************/	
+	$.fn.jqTransSelect = function(){
+		return this.each(function(index){
+			var $select = $(this);
+
+			if($select.hasClass('jqTransformHidden')) {return;}
+			if($select.attr('multiple')) {return;}
+
+			var oLabel  =  jqTransformGetLabel($select);
+			/* First thing we do is Wrap it */
+			var $wrapper = $select
+				.addClass('jqTransformHidden')
+				.wrap('<div class="jqTransformSelectWrapper"></div>')
+				.parent()
+				.css({zIndex: 10-index})
+			;
+			
+			/* Now add the html for the select */
+			$wrapper.prepend('<div><span></span><a href="#" class="jqTransformSelectOpen"></a></div><ul></ul>');
+			var $ul = $('ul', $wrapper).css('width',$select.width()).hide();
+			/* Now we add the options */
+			$('option', this).each(function(i){
+				var oLi = $('<li><a href="#" index="'+ i +'">'+ $(this).html() +'</a></li>');
+				$ul.append(oLi);
+			});
+			
+			/* Add click handler to the a */
+			$ul.find('a').click(function(){
+					$('a.selected', $wrapper).removeClass('selected');
+					$(this).addClass('selected');	
+					/* Fire the onchange event */
+					if ($select[0].selectedIndex != $(this).attr('index') && $select[0].onchange) { $select[0].selectedIndex = $(this).attr('index'); $select[0].onchange(); }
+					$select[0].selectedIndex = $(this).attr('index');
+					$('span:eq(0)', $wrapper).html($(this).html());
+					$ul.hide();
+					return false;
+			});
+			/* Set the default */
+			$('a:eq('+ this.selectedIndex +')', $ul).click();
+			$('span:first', $wrapper).click(function(){$("a.jqTransformSelectOpen",$wrapper).trigger('click');});
+			oLabel && oLabel.click(function(){$("a.jqTransformSelectOpen",$wrapper).trigger('click');});
+			this.oLabel = oLabel;
+			
+			/* Apply the click handler to the Open */
+			var oLinkOpen = $('a.jqTransformSelectOpen', $wrapper)
+				.click(function(){
+					//Check if box is already open to still allow toggle, but close all other selects
+					if( $ul.css('display') == 'none' ) {jqTransformHideSelect();} 
+					if($select.attr('disabled')){return false;}
+
+					$ul.slideToggle('fast', function(){					
+						var offSet = ($('a.selected', $ul).offset().top - $ul.offset().top);
+						$ul.animate({scrollTop: offSet});
+					});
+					return false;
+				})
+			;
+
+			// Set the new width
+			var iSelectWidth = $select.outerWidth();
+			var oSpan = $('span:first',$wrapper);
+			var newWidth = (iSelectWidth > oSpan.innerWidth())?iSelectWidth+oLinkOpen.outerWidth():$wrapper.width();
+			$wrapper.css('width',newWidth);
+			$ul.css('width',newWidth-2);
+			oSpan.css({width:iSelectWidth});
+		
+			// Calculate the height if necessary, less elements that the default height
+			//show the ul to calculate the block, if ul is not displayed li height value is 0
+			$ul.css({display:'block',visibility:'hidden'});
+			var iSelectHeight = ($('li',$ul).length)*($('li:first',$ul).height());//+1 else bug ff
+			(iSelectHeight < $ul.height()) && $ul.css({height:iSelectHeight,'overflow':'hidden'});//hidden else bug with ff
+			$ul.css({display:'none',visibility:'visible'});
+			
+		});
+	};
+	$.fn.jqTransform = function(options){
+		var opt = $.extend({},defaultOptions,options);
+		
+		/* each form */
+		 return this.each(function(){
+			var selfForm = $(this);
+			if(selfForm.hasClass('jqtransformdone')) {return;}
+			selfForm.addClass('jqtransformdone');
+			
+			//$('input:submit, input:reset, input[type="button"]', this).jqTransInputButton();			
+			//$('input:text, input:password', this).jqTransInputText();			
+			//$('input:checkbox', this).jqTransCheckBox();
+			//$('input:radio', this).jqTransRadio();
+			//$('textarea', this).jqTransTextarea();
+			
+			if( $('select', this).jqTransSelect().length > 0 ){jqTransformAddDocumentListener();}
+			selfForm.bind('reset',function(){var action = function(){jqTransformReset(this);}; window.setTimeout(action, 10);});
+			
+			//preloading dont needed anymore since normal, focus and hover image are the same one
+			/*if(opt.preloadImg && !jqTransformImgPreloaded){
+				jqTransformImgPreloaded = true;
+				var oInputText = $('input:text:first', selfForm);
+				if(oInputText.length > 0){
+					//pour ie on eleve les ""
+					var strWrapperImgUrl = oInputText.get(0).wrapper.css('background-image');
+					jqTransformPreloadHoverFocusImg(strWrapperImgUrl);					
+					var strInnerImgUrl = $('div.jqTransformInputInner',$(oInputText.get(0).wrapper)).css('background-image');
+					jqTransformPreloadHoverFocusImg(strInnerImgUrl);
+				}
+				
+				var oTextarea = $('textarea',selfForm);
+				if(oTextarea.length > 0){
+					var oTable = oTextarea.get(0).oTable;
+					$('td',oTable).each(function(){
+						var strImgBack = $(this).css('background-image');
+						jqTransformPreloadHoverFocusImg(strImgBack);
+					});
+				}
+			}*/
+			
+			
+		}); /* End Form each */
+				
+	};/* End the Plugin */
+
+})(jQuery);
+//hidden-input
+function hideFormText() {
+	var _inputs = document.getElementsByTagName('input');
+	var _txt = document.getElementsByTagName('textarea');
+	var _value = [];
+	
+	if (_inputs) {
+		for(var i=0; i<_inputs.length; i++) {
+			if (_inputs[i].type == 'text' || _inputs[i].type == 'password') {
+				
+				_inputs[i].index = i;
+				_value[i] = _inputs[i].value;
+				
+				_inputs[i].onfocus = function(){
+					if (this.value == _value[this.index])
+						this.value = '';
+				}
+				_inputs[i].onblur = function(){
+					if (this.value == '')
+						this.value = _value[this.index];
+				}
+			}
+		}
+	}
+	if (_txt) {
+		for(var i=0; i<_txt.length; i++) {
+			_txt[i].index = i;
+			_value['txt'+i] = _txt[i].value;
+			
+			_txt[i].onfocus = function(){
+				if (this.value == _value['txt'+this.index])
+					this.value = '';
+			}
+			_txt[i].onblur = function(){
+				if (this.value == '')
+					this.value = _value['txt'+this.index];
+			}
+		}
+	}
+}
+if (window.addEventListener)
+	window.addEventListener("load", hideFormText, false);
+else if (window.attachEvent)
+	window.attachEvent("onload", hideFormText);		
+//fade-box
+// page init
+jQuery(function(){
+	initFadeBox();
+});
+
+// open-close init
+function initFadeBox() {
+	jQuery('div.phone_item').OpenClose({
+		activeClass:'active',
+		opener:'a.open-close',
+		slider:'div.block-holder',
+		effect:'fade',
+		animSpeed:500
+	});
+}
+// open-close plugin
+jQuery.fn.OpenClose = function(_options){
+	// default options
+	var _options = jQuery.extend({
+		activeClass:'active',
+		opener:'.opener',
+		slider:'.slide',
+		animSpeed: 400,
+		animStart:false,
+		animEnd:false,
+		effect:'fade',
+		event:'click'
+	},_options);
+
+	return this.each(function(){
+		// options
+		var _holder = jQuery(this);
+		var _slideSpeed = _options.animSpeed;
+		var _activeClass = _options.activeClass;
+		var _opener = jQuery(_options.opener, _holder);
+		var _slider = jQuery(_options.slider, _holder);
+		var _animStart = _options.animStart;
+		var _animEnd = _options.animEnd;
+		var _effect = _options.effect;
+		var _event = _options.event;
+		if(_slider.length) {
+			_opener.bind(_event,function(){
+				if(!_slider.is(':animated')) {
+					if(typeof _animStart === 'function') _animStart();
+					if(_holder.hasClass(_activeClass)) {
+						_slider[_effect=='fade' ? 'fadeOut' : 'slideUp'](_slideSpeed,function(){
+							if(typeof _animEnd === 'function') _animEnd();
+						});
+						_holder.removeClass(_activeClass);
+					} else {
+						_holder.addClass(_activeClass);
+						_slider[_effect=='fade' ? 'fadeIn' : 'slideDown'](_slideSpeed,function(){
+							if(typeof _animEnd === 'function') _animEnd();
+						});
+					}
+				}
+				return false;
+			});
+			if(_holder.hasClass(_activeClass)) _slider.show();
+			else _slider.hide();
+		}
+	});
+}  
+//tabs
+ $(function() {
+    $("#tabset").organicTabs({
+        "speed": 200
+    });
+	$("#news").organicTabs({
+        "speed": 200
+    });
+});
+(function($) {
+
+    $.organicTabs = function(el, options) {
+    
+        var base = this;
+        base.$el = $(el);
+        base.$nav = base.$el.find(".nav");
+                
+        base.init = function() {
+        
+            base.options = $.extend({},$.organicTabs.defaultOptions, options);
+            
+            // Accessible hiding fix
+            $(".hide").css({
+                "position": "relative",
+                "top": 0,
+                "left": 0,
+                "display": "none"
+            }); 
+            
+            base.$nav.delegate("li > a", "click", function() {
+            
+                // Figure out current list via CSS class
+                var curList = base.$el.find("a.current").attr("href").substring(1),
+                
+                // List moving to
+                    $newList = $(this),
+                    
+                // Figure out ID of new list
+                    listID = $newList.attr("href").substring(1),
+                
+                // Set outer wrapper height to (static) height of current inner list
+                    $allListWrap = base.$el.find(".list-wrap"),
+                    curListHeight = $allListWrap.height();
+                $allListWrap.height(curListHeight);
+                                        
+                if ((listID != curList) && ( base.$el.find(":animated").length == 0)) {
+                                            
+                    // Fade out current list
+                    base.$el.find("#"+curList).fadeOut(base.options.speed, function() {
+                        
+                        // Fade in new list on callback
+                        base.$el.find("#"+listID).fadeIn(base.options.speed);
+                        
+                        // Adjust outer wrapper to fit new list snuggly
+                        var newHeight = base.$el.find("#"+listID).height();
+                        $allListWrap.animate({
+                            height: newHeight
+                        });
+                        
+                        // Remove highlighting - Add to just-clicked tab
+                        base.$el.find(".nav li a").removeClass("current");
+                        $newList.addClass("current");
+                            
+                    });
+                    
+                }   
+                
+                // Don't behave like a regular link
+                // Stop propegation and bubbling
+                return false;
+            });
+            
+        };
+        base.init();
+    };
+    
+    $.organicTabs.defaultOptions = {
+        "speed": 300
+    };
+    
+    $.fn.organicTabs = function(options) {
+        return this.each(function() {
+            (new $.organicTabs(this, options));
+        });
+    };
+    
+})(jQuery);

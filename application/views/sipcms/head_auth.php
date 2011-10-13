@@ -6,10 +6,13 @@
 	<title>phone</title>
 	<link rel="stylesheet" href="/sipcms/css/clear.css" type="text/css" />
 	<link rel="stylesheet" href="/sipcms/css/style.css" type="text/css" />
+        <link type="text/css" href="/sipcms/css/jquery.ui.tabs.css" rel="stylesheet" />	
 	<script type="text/javascript" src="/sipcms/js/jquery-1.4.2.min.js"></script>
+        <script type="text/javascript" src="/sipcms/js/jquery-ui-tabs.js"></script>
         <script type="text/javascript" src="/sipcms/js/jquery.swfobject.min.js"></script>
 	<script type="text/javascript" src="/sipcms/js/main.js"></script>
 	<script type="text/javascript" src="/sipcms/js/jcarousellite.js"></script>
+        <script type="text/javascript" src="/sipcms/js/jquery.blockUI.js"></script>
 	<!--[if lte IE 6]>
 	<link href="/sipcms/css/ie.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="/sipcms/js/png.js"></script>
@@ -115,25 +118,60 @@
 	});
 	</script>
         <script type="text/javascript">
-        $(document).ready(
-                function () {
-                        // #myFlashVars is the selector
-                        $('#phone_flash').flash(
-                                {
-                                        // test_flashvars.swf is the flash document
-                                        swf: '/phone/webphone.swf',
-                                        height: 383,
-                                        width: 550,
-					wmode: 'transparent',
-                                        // these arguments will be passed into the flash document
-                                        flashvars: {
-                                                user: <?=$user_id?>,
-                                                phone: <?=  Model_Sipstarsfon::get_number($user->email)?>
-                                        }
-                                }
-                        );
+        $(document).ready(function () {
+        // #myFlashVars is the selector
+        $('#phone_flash').flash(
+            {
+                // test_flashvars.swf is the flash document
+                swf: '/phone/webphone.swf',
+                height: 383,
+                width: 550,
+                wmode: 'transparent',
+                // these arguments will be passed into the flash document
+                flashvars: {
+                    id: <?=$user_id?>,
+                    num: <?=Model_Sipstarsfon::get_number($user->email)?>,
+                    domain: 'sipcms.infcms.ru'
                 }
+            }
         );
+        
+        });
+        function getXmlHttp(){
+            var xmlhttp;
+            try {
+                xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+            } catch (e) {
+                try {
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (E) {
+                    xmlhttp = false;
+                }
+            }
+            if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
+                xmlhttp = new XMLHttpRequest();
+            }
+            return xmlhttp;
+        }
+
+        function refreshBalancAjax()
+        {
+            //document.getElementById('balance_phone').innerHTML = 'БЛЯ';
+            //$('#balance_phone').html($.post("/ajax/get_balance"));
+            var req = getXmlHttp();
+            var statusElem = document.getElementById('balance_phone');
+
+            req.onreadystatechange = function() {  
+                if (req.readyState == 4) {
+                    if(req.status == 200) { 
+                        statusElem.innerHTML = req.responseText;
+                    }
+                }
+            }
+
+            req.open('POST', '/ajax/get_balance', true);  
+            req.send('');
+        }
         </script>
 </head>
 
@@ -150,13 +188,16 @@
 				<li class="pngf"><a href="/">Клиенты</a></li>
 				<li class="pngf"><a href="/">Контакты</a></li>
 			</ul>
-			<form action="#" class="lang custom">
-				<fieldset>
-					<select>
-						<option><img src="/sipcms/images/lang-ico.png" alt="image description" width="43" height="18" /></option>
-						<option><img src="/sipcms/images/lang-ico-us.png" alt="image description" width="43" height="18" /></option>
-					</select>
-				</fieldset>
+			<form action="#" id="form_lang" class="lang custom">
+                            <fieldset>
+                                <div class="lng_img">
+                                    <img src="/sipcms/images/lang-ico.png" alt="image description" width="43" height="18" />
+                                </div>
+                                <select name="lang" id="lang">
+                                        <option selected="selected">Русский</option>
+                                        <option>English</option>
+                                </select>
+                            </fieldset>
 			</form>
 			<!-- end TOPMENU -->
 			
@@ -168,19 +209,19 @@
 		<!-- PHONE -->
 		<div id="phone"><div id="phone_inner">
 			<div class="phone_block">
-				<h1 class="pngf">User1</h1>
+				<h1 class="pngf"><?=$user->email?></h1>
 				<div class="phone_item number pngf">
-					<div class="holder pngf"></div><?=  Model_Sipstarsfon::get_number($user->email)?></div>
+					<div class="holder pngf"></div><?=  Model_Sipstarsfon::get_number($user->email,true)?></div>
 				<div class="phone_item balans pngf">
-					<div class="holder pngf"></div><a class="balans-summ link-popup" href="#popup-4"><?=  Model_Sipstarsfon::get_balanc($user->email)?></a>
-					<a class="open-close" href="#">rub.</a>
+					<div class="holder pngf"></div><a id="balance_phone" class="balans-summ link-popup" href="#popup-4"><?=  Model_Sipstarsfon::get_balanc($user->email)?></a>
+					<a id="curency" class="open-close" href="#" type="USD">usd</a>
 					<div class="block-holder">
-						<div class="block">
+						<div id="block-cur" class="block">
 							<div class="top">
 								<div class="c">
 									<div class="c-content">
-										<a href="#" class="currency"><em>eur</em></a>
-										<a href="#" class="currency"><em>usd</em></a>
+										<a href="#" class="currency"><em type="EUR">eur</em></a>
+										<a href="#" class="currency"><em type="RUB">rub</em></a>
 									</div>
 								</div>
 								<div class="b"></div>
@@ -205,7 +246,7 @@
 							<a href="#" class="pink"></a>
 						</div>
 					</div>
-					<a href="#popup-6" class="link-popup phone_btn3"><span class="pngf">Настроить аккаунт</span></a>
+					<a href="/settings" id="set_cab" class="link-popup phone_btn3"><span class="pngf">Настроить аккаунт</span></a>
 				</div>
 			</div>
 		

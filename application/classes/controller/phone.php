@@ -40,6 +40,9 @@ class Controller_Phone extends Controller{
                 $route = Arr::get($_POST,'route',null);
                 echo Model_Sipstarsfon::get_history($id,$oper,$route);
                 break;
+            case "get_tariff":
+                echo Model_Sipstarsfon::get_tariff($id,Arr::get($_POST,'phone',''));
+                break;
         }
     }
     

@@ -141,10 +141,10 @@ return array
 			 *
 			 * Ports and sockets may be appended to the hostname.
 			 */
-			'hostname'   => '78.41.28.179',
+			'hostname'   => '78.41.28.180',
 			'database'   => 'mor',
-			'username'   => 'root',
-			'password'   => 'Rdx768Wdv',
+			'username'   => 'Sadmin',
+			'password'   => 'DaNiL147369',
 			'persistent' => FALSE,
 		),
 		'table_prefix' => '',

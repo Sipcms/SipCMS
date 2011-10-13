@@ -56,7 +56,7 @@
 									<a id="reg-popup" href="/registration" class="button link-popup">Назад</a>
 								</div>
 								<div class="alignright">
-									<input class="submit pngf" type="submit" value="Готово" />
+									<input id="close_fini" class="submit pngf" type="submit" value="Готово" />
 								</div>
 							</div>
 						</fieldset>
@@ -113,7 +113,7 @@
 </div>
 
 <div class="popup-holder">
-	<div class="lightbox lightbox-2" id="popup-4">
+	<div class="lightbox lightbox-2" id="payment_step1">
 		<div class="lightbox-content">
 			<div class="content">
 				<div class="healing">
@@ -195,7 +195,7 @@
 	</div>
 </div>
 <div class="popup-holder">
-	<div class="lightbox-3 lightbox" id="popup-6">
+	<div class="lightbox-3 lightbox" id="settings_cab">
 		<div class="lightbox-content">
 			<div class="content">
 				<div class="healing">
@@ -216,7 +216,7 @@
 							</div>
 							<div id="tabset" class="tab-holder">
 								<ul class="nav">				
-									<li class="nav-1"><a href="#personal-data" class="current"><span>Персональные данные</span></a></li>
+									<li class="nav-1"><a href="#personal-data"><span>Персональные данные</span></a></li>
 									<li class="nav-2"><a href="#change-pass"><span>Смена пароля</span></a></li>
 									<li class="nav-3"><a href="#last-entered"><span>Последние авторизации</span></a></li>
 								</ul>
@@ -230,7 +230,7 @@
 										</div>
 										<div class="select-holder select-holder-2">
 											<label for="lang">Язык:</label>
-											<select id="lang">
+											<select id="lang_rr">
 												<option value="Москва">RU</option>
 												<option value="Москва">ENG</option>
 												<option value="Москва">UA</option>

@@ -137,6 +137,12 @@ Route::set('panel','panel(<controller>(/<action>(/<id>)))')
             'action'     => 'index',
         ));
 
+Route::set('phone', 'phone/get_stat(/<id>)')
+	->defaults(array(
+            'controller' => 'phone',
+            'action'     => 'get_stat',
+	));
+
 Route::set('default', '(<controller>(/<action>(/<id>)))')
 	->defaults(array(
             'controller' => 'main',

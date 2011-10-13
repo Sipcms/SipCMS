@@ -1,0 +1,28 @@
+/*
+ * jQuery UI Tabs 1.8.16
+ *
+ * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Tabs#theming
+ */
+.ui-tabs {  } /* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
+.ui-tabs .ui-tabs-nav { }
+.ui-tabs .ui-tabs-nav li {  }
+.ui-tabs .ui-tabs-nav li a {  }
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected { 
+    background-position:0 0;
+    text-decoration:none;
+}
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected a, .ui-tabs .ui-tabs-nav li.ui-state-disabled a, .ui-tabs .ui-tabs-nav li.ui-state-processing a {  }
+.ui-tabs .ui-tabs-nav li.ui-state-hover a, li.ui-state-active a{
+    background-position:0 0;
+    text-decoration:none;
+}
+.ui-tabs .ui-tabs-nav li.ui-state-hover a span, li.ui-state-active a{
+    background-position:100% -34px;
+}
+.ui-tabs .ui-tabs-nav li a, .ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a {  } /* first selector in group seems obsolete, but required to overcome bug in Opera applying cursor: text overall if defined elsewhere... */
+.ui-tabs .ui-tabs-panel { display: block;  }
+.ui-tabs .ui-tabs-hide { display: none !important; }
